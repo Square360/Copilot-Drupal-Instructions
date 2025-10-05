@@ -2,20 +2,22 @@
 
 ## Quick Start
 
-### 1. Add to Composer
+### 1. Verify Square360 Package Server
 
-In your Drupal project's `composer.json`, add this repository:
+Ensure your Drupal project's `composer.json` includes the Square360 package server in the repositories section:
 
 ```json
 {
   "repositories": [
     {
-      "type": "vcs",
-      "url": "https://github.com/Square360/Copilot-Drupal-Instructions"
+      "type": "composer",
+      "url": "https://packages.square360.com"
     }
   ]
 }
 ```
+
+If it's not already configured, add it before proceeding.
 
 ### 2. Install the Package
 
