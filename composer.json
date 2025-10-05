@@ -17,9 +17,10 @@
     }
   ],
   "require": {
-    "composer/installers": "^1.0 || ^2.0"
+    "composer/installers": "^2.0"
   },
   "extra": {
-    "installer-name": "copilot"
+    "installer-name": "copilot",
+    "installer-types": ["copilot-instructions"]
   }
 }
