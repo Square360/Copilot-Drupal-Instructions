@@ -1,0 +1,76 @@
+# GitHub Copilot Instructions for Drupal Projects
+
+## About This Package
+
+This package provides standardized GitHub Copilot instruction files for Drupal 10/11 projects. These files help Copilot provide context-aware assistance based on Square360's development standards and best practices.
+
+## Installation
+
+See [INSTALL.md](./INSTALL.md) for detailed installation instructions.
+
+**Quick install:**
+```bash
+composer require square360/copilot-drupal-instructions
+```
+
+## Auto-Customization with Copilot
+
+After installation, use GitHub Copilot to automatically customize the files for your project!
+
+**Copy this prompt** into Copilot Chat:
+```
+I just installed square360/copilot-drupal-instructions. Update .github/copilot/ 
+files to reflect this project by analyzing structure, composer.json, and custom modules/themes. 
+Replace generic examples with actual project details. Keep copilot-changelog.md unchanged.
+```
+
+See [COPILOT-PROMPT.md](./COPILOT-PROMPT.md) for detailed prompts and instructions.
+
+## Manual Configuration
+
+Alternatively, customize the following in your `.github/copilot/README.md`:
+
+**Site Information:**
+- Site name: [Your Site Name]
+- LIVE site URL: [Your production URL]
+- REPO URL: [Your GitHub repository]
+- Site machine name prefix: `[yoursite]_`
+
+## Instruction Files Organization
+
+The coding standards and guidelines are organized by domain to provide focused, context-aware assistance:
+
+### Core Development
+- **[drupal-modules.md](./drupal-modules.md)** - Module development, PHPCS standards, dependency injection, and Drupal best practices
+- **[themes-frontend.md](./themes-frontend.md)** - Theming, CSS/SCSS, JavaScript, Vite, and Webpack configuration
+- **[accessibility.md](./accessibility.md)** - WCAG 2.1 AA compliance and Drupal accessibility standards
+- **[security-performance.md](./security-performance.md)** - Security practices, performance optimization, and caching strategies
+
+### Customization Areas
+
+After installation, update these sections in your copy:
+
+- **Module Naming Convention**: Define your site's module prefix (e.g., `mysite_`)
+- **Custom Modules**: List your project-specific custom modules
+- **Development Environment**: Document your local dev setup (Lando, DDEV, etc.)
+- **Code Quality**: Add project-specific quality standards
+- **Additional Guidelines**: Any project-specific patterns or requirements
+
+## Quick Reference Commands
+
+**Development:**
+```bash
+lando composer code-sniff    # Run PHPCS
+lando composer code-fix      # Auto-fix PHPCS issues (if available)
+lando drush cr               # Clear cache
+lando drush updb             # Run database updates
+lando drush cim              # Import configuration
+lando drush cex              # Export configuration
+```
+
+## Resources
+
+- [Drupal Coding Standards](https://www.drupal.org/docs/develop/standards)
+- [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+- [Drupal Accessibility](https://www.drupal.org/about/features/accessibility)
+- [Drupal Best Practices](https://www.drupal.org/docs/develop/coding-standards)

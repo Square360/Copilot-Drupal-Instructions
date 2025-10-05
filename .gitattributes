@@ -1,0 +1,5 @@
+# Preserve project-specific changelog during composer updates
+copilot-changelog.md merge=ours
+
+# Keep .gitattributes itself during updates
+.gitattributes merge=ours

@@ -1,0 +1,28 @@
+{
+  "name": "square360/copilot-drupal-instructions",
+  "description": "Reusable GitHub Copilot instruction files for Drupal projects",
+  "type": "drupal-library",
+  "license": "MIT",
+  "keywords": [
+    "drupal",
+    "github-copilot",
+    "documentation",
+    "coding-standards",
+    "square360"
+  ],
+  "authors": [
+    {
+      "name": "Square360",
+      "homepage": "https://square360.com"
+    }
+  ],
+  "require": {
+    "composer/installers": "^1.0 || ^2.0"
+  },
+  "extra": {
+    "installer-name": "copilot",
+    "installer-paths": {
+      ".github/copilot/": ["type:drupal-library"]
+    }
+  }
+}
