@@ -19,13 +19,31 @@ Ensure your Drupal project's `composer.json` includes the Square360 package serv
 
 If it's not already configured, add it before proceeding.
 
-### 2. Install the Package
+### 2. Configure Installer Path
+
+Add the custom installer path to your project's `composer.json` in the `extra.installer-paths` section:
+
+```json
+{
+  "extra": {
+    "installer-paths": {
+      ".github/{$name}/": ["type:copilot-instructions"]
+    }
+  }
+}
+```
+
+**Note:** If your project already has `installer-paths` configured, just add the `.github/{$name}/` entry to the existing list.
+
+### 3. Install the Package
 
 ```bash
 composer require square360/copilot-drupal-instructions
 ```
 
-### 3. Configure Git Merge Strategy
+The files will be installed to `.github/copilot/`.
+
+### 4. Configure Git Merge Strategy
 
 This ensures your project-specific `copilot-changelog.md` won't be overwritten during updates.
 
@@ -133,4 +151,19 @@ composer require composer/installers
 
 ### Wrong Installation Path
 
-The files should install to `.github/copilot/`. If they don't, check your project's `composer.json` for custom installer paths that might conflict.
+If files install to the wrong location (like `web/libraries/`):
+
+1. Ensure the custom installer path is configured in your project's `composer.json`:
+   ```json
+   "extra": {
+     "installer-paths": {
+       ".github/{$name}/": ["type:copilot-instructions"]
+     }
+   }
+   ```
+
+2. Remove the package and reinstall:
+   ```bash
+   composer remove square360/copilot-drupal-instructions
+   composer require square360/copilot-drupal-instructions
+   ```
