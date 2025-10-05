@@ -21,20 +21,20 @@ If it's not already configured, add it before proceeding.
 
 ### 2. Configure Installer Path
 
-Add the custom installer configuration to your project's `composer.json` in the `extra` section:
+Add this specific installer path to your project's `composer.json` in the `extra.installer-paths` section. This path must be added **before** the generic `drupal-library` path to take precedence:
 
 ```json
 {
   "extra": {
-    "installer-types": ["copilot-instructions"],
     "installer-paths": {
-      ".github/{$name}/": ["type:copilot-instructions"]
+      ".github/{$name}/": ["square360/copilot-drupal-instructions"],
+      "web/libraries/{$name}/": ["type:drupal-library"]
     }
   }
 }
 ```
 
-**Note:** If your project already has `installer-paths` or `installer-types` configured, just add these entries to the existing lists.
+**Note:** Your project likely already has the `web/libraries/{$name}/` entry. Just add the `.github/{$name}/` line **above** it in the installer-paths section. The order matters - more specific paths should come first.
 
 ### 3. Install the Package
 
@@ -152,21 +152,29 @@ composer require composer/installers
 
 ### Wrong Installation Path
 
-If files install to the wrong location (like `web/libraries/` or `vendor/`):
+If files install to the wrong location (like `web/libraries/copilot/` or `vendor/`):
 
-1. Ensure both `installer-types` and `installer-paths` are configured in your project's `composer.json`:
+1. Ensure the specific installer path is configured in your project's `composer.json` **before** the generic `drupal-library` path:
 
    ```json
    "extra": {
-     "installer-types": ["copilot-instructions"],
      "installer-paths": {
-       ".github/{$name}/": ["type:copilot-instructions"]
+       ".github/{$name}/": ["square360/copilot-drupal-instructions"],
+       "web/libraries/{$name}/": ["type:drupal-library"]
      }
    }
    ```
 
-2. Remove the package and reinstall:
+   **Important:** The `.github/{$name}/` line must come **before** the `web/libraries/{$name}/` line.
+
+2. Remove the incorrectly installed files:
+
    ```bash
-   composer remove square360/copilot-drupal-instructions
+   rm -rf web/libraries/copilot .github/copilot vendor/square360/copilot-drupal-instructions
+   ```
+
+3. Reinstall the package:
+
+   ```bash
    composer require square360/copilot-drupal-instructions
    ```
