@@ -21,11 +21,12 @@ If it's not already configured, add it before proceeding.
 
 ### 2. Configure Installer Path
 
-Add the custom installer path to your project's `composer.json` in the `extra.installer-paths` section:
+Add the custom installer configuration to your project's `composer.json` in the `extra` section:
 
 ```json
 {
   "extra": {
+    "installer-types": ["copilot-instructions"],
     "installer-paths": {
       ".github/{$name}/": ["type:copilot-instructions"]
     }
@@ -33,7 +34,7 @@ Add the custom installer path to your project's `composer.json` in the `extra.in
 }
 ```
 
-**Note:** If your project already has `installer-paths` configured, just add the `.github/{$name}/` entry to the existing list.
+**Note:** If your project already has `installer-paths` or `installer-types` configured, just add these entries to the existing lists.
 
 ### 3. Install the Package
 
@@ -151,11 +152,13 @@ composer require composer/installers
 
 ### Wrong Installation Path
 
-If files install to the wrong location (like `web/libraries/`):
+If files install to the wrong location (like `web/libraries/` or `vendor/`):
 
-1. Ensure the custom installer path is configured in your project's `composer.json`:
+1. Ensure both `installer-types` and `installer-paths` are configured in your project's `composer.json`:
+
    ```json
    "extra": {
+     "installer-types": ["copilot-instructions"],
      "installer-paths": {
        ".github/{$name}/": ["type:copilot-instructions"]
      }
