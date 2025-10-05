@@ -11,7 +11,7 @@ In your Drupal project's `composer.json`, add this repository:
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/Square360/copilot-drupal-instructions"
+      "url": "https://github.com/Square360/Copilot-Drupal-Instructions"
     }
   ]
 }

@@ -114,4 +114,4 @@ Your Project
 - **How It Works**: See MERGE-STRATEGY.md
 - **Publishing**: See NEXT-STEPS.md
 - **Overview**: See PACKAGE-SUMMARY.md
-- **Repository**: https://github.com/Square360/copilot-drupal-instructions
+- **Repository**: https://github.com/Square360/Copilot-Drupal-Instructions

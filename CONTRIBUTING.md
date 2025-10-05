@@ -6,48 +6,15 @@ Thank you for your interest in contributing to this project! This package helps 
 
 ### Reporting Issues
 
-If you find any issues or have suggestions for improvements:
+1. Check if the issue already exists in the [Issues](https://github.com/Square360/Copilot-Drupal-Instructions/issues) section
+2. Provide a clear description of the problem
 
-1. Check if the issue already exists in the [Issues](https://github.com/Square360/copilot-drupal-instructions/issues) section
-2. If not, create a new issue with:
-   - Clear description of the problem or suggestion
-   - Examples or use cases
-   - Expected vs actual behavior (for bugs)
+### Contributing Code
 
-### Submitting Changes
-
-1. **Fork the Repository**
+1. Fork the repository
+2. Clone your fork:
    ```bash
-   git clone https://github.com/Square360/copilot-drupal-instructions.git
-   cd copilot-drupal-instructions
-   ```
-
-2. **Create a Feature Branch**
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-3. **Make Your Changes**
-   - Follow the existing documentation style
-   - Ensure examples are accurate and tested
-   - Update CHANGELOG.md with your changes
-
-4. **Test Your Changes**
-   - Install the package in a test Drupal project
-   - Verify Copilot can access and use the instructions
-   - Check that project-specific files are preserved during updates
-
-5. **Commit Your Changes**
-   ```bash
-   git add .
-   git commit -m "Brief description of changes"
-   ```
-
-6. **Push and Create Pull Request**
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-   Then create a pull request on GitHub.
+   git clone https://github.com/Square360/Copilot-Drupal-Instructions.git
 
 ## Documentation Standards
 
