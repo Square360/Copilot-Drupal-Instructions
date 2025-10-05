@@ -54,7 +54,7 @@ cd temp-copilot-package
 git init
 git add .
 git commit -m "Initial commit: v1.0.0"
-git remote add origin git@github.com:Square360/copilot-drupal-instructions.git
+git remote add origin git@github.com:Square360/Copilot-Drupal-Instructions.git
 git push -u origin main
 git tag -a v1.0.0 -m "Release v1.0.0"
 git push origin v1.0.0
@@ -63,7 +63,7 @@ git push origin v1.0.0
 ### 2. Install in Yale Health Project
 ```bash
 cd /Volumes/Work/repos/yalehealth-yale-edu
-composer config repositories.copilot-instructions vcs https://github.com/Square360/copilot-drupal-instructions
+composer config repositories.copilot-instructions vcs https://github.com/Square360/Copilot-Drupal-Instructions
 composer require square360/copilot-drupal-instructions:^1.0
 git config merge.ours.driver true
 echo ".github/copilot/copilot-changelog.md merge=ours" >> .gitattributes

@@ -17,9 +17,9 @@ git init
 git add .
 git commit -m "Initial commit: Copilot Drupal Instructions package v1.0.0"
 
-# Create a new repo on GitHub at: https://github.com/Square360/copilot-drupal-instructions
+# Create a new repo on GitHub at: https://github.com/Square360/Copilot-Drupal-Instructions
 # Then add the remote and push:
-git remote add origin git@github.com:Square360/copilot-drupal-instructions.git
+git remote add origin git@github.com:Square360/Copilot-Drupal-Instructions.git
 git branch -M main
 git push -u origin main
 ```
@@ -37,7 +37,7 @@ From the Yale Health project root:
 
 ```bash
 # Add the repository to composer.json
-composer config repositories.copilot-instructions vcs https://github.com/Square360/copilot-drupal-instructions
+composer config repositories.copilot-instructions vcs https://github.com/Square360/Copilot-Drupal-Instructions
 
 # Install the package
 composer require square360/copilot-drupal-instructions:^1.0

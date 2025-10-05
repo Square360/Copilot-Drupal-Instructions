@@ -70,9 +70,9 @@ git init
 git add .
 git commit -m "Initial release v1.0.0"
 
-# Create repo on GitHub: Square360/copilot-drupal-instructions
+# Create repo on GitHub: Square360/Copilot-Drupal-Instructions
 # Then:
-git remote add origin git@github.com:Square360/copilot-drupal-instructions.git
+git remote add origin git@github.com:Square360/Copilot-Drupal-Instructions.git
 git branch -M main
 git push -u origin main
 
@@ -87,7 +87,7 @@ git push origin v1.0.0
 cd /Volumes/Work/repos/yalehealth-yale-edu
 
 # Add the repository
-composer config repositories.copilot-instructions vcs https://github.com/Square360/copilot-drupal-instructions
+composer config repositories.copilot-instructions vcs https://github.com/Square360/Copilot-Drupal-Instructions
 
 # Install
 composer require square360/copilot-drupal-instructions:^1.0
