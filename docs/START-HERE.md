@@ -63,7 +63,7 @@ When you run `composer update square360/copilot-drupal-instructions`:
 ### 1. Publish to GitHub (5 minutes)
 
 ```bash
-cd /Volumes/Work/repos/yalehealth-yale-edu/temp-copilot-package
+cd /path/to/Copilot-Drupal-Instructions
 
 # Initialize git
 git init
@@ -81,10 +81,10 @@ git tag -a v1.0.0 -m "Release v1.0.0"
 git push origin v1.0.0
 ```
 
-### 2. Install in Yale Health (2 minutes)
+### 2. Install in Your Project (2 minutes)
 
 ```bash
-cd /Volumes/Work/repos/yalehealth-yale-edu
+cd /path/to/your/drupal-project
 
 # Add the repository
 composer config repositories.copilot-instructions vcs https://github.com/Square360/Copilot-Drupal-Instructions
@@ -101,7 +101,7 @@ git add .
 git commit -m "Add copilot instructions package"
 ```
 
-### 3. Customize for Yale Health (2 minutes - Automated!)
+### 3. Customize for Your Project (2 minutes - Automated!)
 
 **Use this Copilot prompt to automatically customize all files:**
 
@@ -121,7 +121,7 @@ Copilot will analyze your project and update all the files automatically! Review
 ### 4. Preserve Your Existing Changelog
 
 ```bash
-# Your current changelog has Yale Health-specific history
+# Your current changelog has project-specific history
 # Make sure to keep it!
 cp .github/copilot/copilot-changelog.md ~/yh-changelog-backup.md
 
@@ -140,7 +140,7 @@ cp ~/yh-changelog-backup.md .github/copilot/copilot-changelog.md
 
 ## Future Use
 
-### For Yale Health and Other Projects
+### For Your Drupal Projects
 
 **Install:**
 ```bash

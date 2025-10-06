@@ -10,7 +10,7 @@ The files in `/temp-copilot-package/` are now configured as a reusable Composer 
 
 ```bash
 # Navigate to the package directory
-cd /Volumes/Work/repos/yalehealth-yale-edu/temp-copilot-package
+cd /path/to/Copilot-Drupal-Instructions
 
 # Initialize git (if not already done)
 git init
@@ -31,9 +31,9 @@ git tag -a v1.0.0 -m "Release version 1.0.0"
 git push origin v1.0.0
 ```
 
-### 3. Install in the Yale Health Project
+### 3. Install in Your Drupal Project
 
-From the Yale Health project root:
+From your Drupal project root:
 
 ```bash
 # Add the repository to composer.json
@@ -49,19 +49,19 @@ git config merge.ours.driver true
 echo ".github/copilot/copilot-changelog.md merge=ours" >> .gitattributes
 ```
 
-### 4. Customize for Yale Health
+### 4. Customize for Your Project
 
 Edit `.github/copilot/README.md` and update:
-- Site name: Yale Health
-- Site URL: https://yalehealth.yale.edu
-- Repo URL: https://github.com/Square360/Yale-Health-Drupal
-- Module prefix: `yh_`
+- Site name: Your Project Name
+- Site URL: https://yourproject.com
+- Repo URL: https://github.com/YourOrg/Your-Project
+- Module prefix: `yoursite_`
 - List of custom modules
 
 ### 5. Move Your Existing Changelog
 
 ```bash
-# Backup current YaleHealth changelog
+# Backup current project changelog
 cp .github/copilot/copilot-changelog.md /tmp/yh-changelog-backup.md
 
 # After composer install, replace with your version
@@ -70,7 +70,7 @@ cp /tmp/yh-changelog-backup.md .github/copilot/copilot-changelog.md
 
 ## Testing the Setup
 
-### Test in Yale Health
+### Test in Your Project
 
 1. Make a change to one of the copilot instruction files in the temp-copilot-package
 2. Commit and tag a new version (e.g., v1.0.1)
