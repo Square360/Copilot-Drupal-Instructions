@@ -1,5 +1,9 @@
 # GitHub Copilot Interaction Instructions
 
+> **For GitHub Copilot:** At the END of every development session, you MUST proactively ask: "Should I summarize the completed work and update the changelog?" Then add a comprehensive summary to `.github/copilot/copilot-changelog.md`. This is not optional - it's a required workflow step.
+
+> **For Developers:** Always end sessions by asking: "Summarize the work completed in this session and add it to .github/copilot/copilot-changelog.md"
+
 ## General Development Guidance
 
 This file contains best practices and interaction patterns for working with GitHub Copilot on Drupal projects.

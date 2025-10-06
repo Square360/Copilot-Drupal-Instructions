@@ -133,7 +133,25 @@ Add to your project's `.gitignore`:
 
 Use this for personal coding preferences, testing new patterns, or local environment details.
 
-### 6. Start Using
+### 6. Maintain Your Project Changelog
+
+**Important:** After completing development work, always update your project's changelog to track changes.
+
+At the end of each coding session, ask GitHub Copilot to:
+
+```
+Summarize the work completed in this session and add it to .github/copilot/copilot-changelog.md
+```
+
+This helps your team:
+- Track project-specific customizations and patterns
+- Understand what Copilot has been "taught" about your project
+- Maintain a history of development decisions
+- Onboard new developers more effectively
+
+**Note:** The `copilot-changelog.md` file is protected by a merge strategy so your project-specific entries won't be overwritten during package updates.
+
+### 7. Start Using
 
 GitHub Copilot will automatically reference these files when you're working on your Drupal project.
 
