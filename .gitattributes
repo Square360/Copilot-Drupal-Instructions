@@ -3,3 +3,11 @@ copilot-changelog.md merge=ours
 
 # Keep .gitattributes itself during updates
 .gitattributes merge=ours
+
+# Exclude files from composer package (via export-ignore)
+# These files won't be installed when the package is required
+/docs export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/CHANGELOG.md export-ignore
+/COPILOT-PROMPT.md export-ignore

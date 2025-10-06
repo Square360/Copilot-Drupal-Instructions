@@ -6,7 +6,7 @@ This package provides standardized GitHub Copilot instruction files for Drupal 1
 
 ## Installation
 
-See [INSTALL.md](./INSTALL.md) for detailed installation instructions.
+See [Installation Guide](https://github.com/Square360/Copilot-Drupal-Instructions/blob/master/docs/INSTALL.md) for detailed installation instructions.
 
 **Quick install:**
 ```bash
@@ -19,12 +19,12 @@ After installation, use GitHub Copilot to automatically customize the files for 
 
 **Copy this prompt** into Copilot Chat:
 ```
-I just installed square360/copilot-drupal-instructions. Update .github/copilot/ 
-files to reflect this project by analyzing structure, composer.json, and custom modules/themes. 
+I just installed square360/copilot-drupal-instructions. Update .github/copilot/
+files to reflect this project by analyzing structure, composer.json, and custom modules/themes.
 Replace generic examples with actual project details. Keep copilot-changelog.md unchanged.
 ```
 
-See [COPILOT-PROMPT.md](./COPILOT-PROMPT.md) for detailed prompts and instructions.
+See [COPILOT-PROMPT.md](https://github.com/Square360/Copilot-Drupal-Instructions/blob/master/COPILOT-PROMPT.md) for detailed prompts and instructions.
 
 ## Manual Configuration
 

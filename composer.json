@@ -21,5 +21,16 @@
   },
   "extra": {
     "installer-name": "copilot"
+  },
+  "archive": {
+    "exclude": [
+      "/docs",
+      "/.git",
+      "/.gitattributes",
+      "/.gitignore",
+      "/CHANGELOG.md",
+      "/COPILOT-PROMPT.md",
+      "/LICENSE"
+    ]
   }
 }
