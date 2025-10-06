@@ -19,18 +19,29 @@ After installation, use GitHub Copilot to automatically customize the files for 
 
 **Copy this prompt** into Copilot Chat:
 ```
-I just installed square360/copilot-drupal-instructions. Update .github/copilot/
-files to reflect this project by analyzing structure, composer.json, and custom modules/themes.
-Replace generic examples with actual project details. Keep copilot-changelog.md unchanged.
+I just installed the square360/copilot-drupal-instructions package into my Drupal project.
+Please update the files in .github/copilot/ to reflect this project instead of
+the generic examples. Specifically:
+
+1. Update README.md with:
+   - Actual project name and description
+   - Live site URL from the project
+   - Set the GitHub repository URL by checking the actual git remote URLs
+   - Correct module prefix (check web/modules/custom/ for the pattern)
+   - List all custom modules in web/modules/custom/
+   - Note the actual development environment (Lando/DDEV/other)
+   - Note the hosting platform (Pantheon/Aquia/other)
+
+2. When done remove the ## Installation, ## Auto-Customization with Copilot and ## Manual Configuration sections from the Readme.md file.
 ```
 
-See [COPILOT-PROMPT.md](https://github.com/Square360/Copilot-Drupal-Instructions/blob/master/COPILOT-PROMPT.md) for detailed prompts and instructions.
 
 ## Manual Configuration
 
 Alternatively, customize the following in your `.github/copilot/README.md`:
 
-**Site Information:**
+## Site Information
+
 - Site name: [Your Site Name]
 - LIVE site URL: [Your production URL]
 - REPO URL: [Your GitHub repository]
@@ -41,10 +52,11 @@ Alternatively, customize the following in your `.github/copilot/README.md`:
 The coding standards and guidelines are organized by domain to provide focused, context-aware assistance:
 
 ### Core Development
-- **[drupal-modules.md](./drupal-modules.md)** - Module development, PHPCS standards, dependency injection, and Drupal best practices
-- **[themes-frontend.md](./themes-frontend.md)** - Theming, CSS/SCSS, JavaScript, Vite, and Webpack configuration
 - **[accessibility.md](./accessibility.md)** - WCAG 2.1 AA compliance and Drupal accessibility standards
+- **[drupal-modules.md](./drupal-modules.md)** - Module development, PHPCS standards, dependency injection, and Drupal best practices
+- **[instructions.md](./instructions.md)** - General guidelines for effective Copilot interaction and asking questions
 - **[security-performance.md](./security-performance.md)** - Security practices, performance optimization, and caching strategies
+- **[themes-frontend.md](./themes-frontend.md)** - Theming, CSS/SCSS, JavaScript, Vite, and Webpack configuration
 
 ### Customization Areas
 
