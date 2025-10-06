@@ -60,27 +60,27 @@ git tag -a v1.0.0 -m "Release v1.0.0"
 git push origin v1.0.0
 ```
 
-### 2. Install in Yale Health Project
+### 2. Install in Your Drupal Project
 ```bash
-cd /Volumes/Work/repos/yalehealth-yale-edu
+cd /path/to/your/drupal-project
 composer config repositories.copilot-instructions vcs https://github.com/Square360/Copilot-Drupal-Instructions
 composer require square360/copilot-drupal-instructions:^1.0
 git config merge.ours.driver true
 echo ".github/copilot/copilot-changelog.md merge=ours" >> .gitattributes
 ```
 
-### 3. Customize for Yale Health
+### 3. Customize for Your Project
 Edit `.github/copilot/README.md` with:
-- Site name: Yale Health
-- URL: https://yalehealth.yale.edu
-- Module prefix: `yh_`
+- Site name: Your Project Name
+- URL: https://yourproject.com
+- Module prefix: `yoursite_`
 - Custom modules list
 
 ### 4. Preserve Your Changelog
 ```bash
-cp .github/copilot/copilot-changelog.md /tmp/yh-changelog.md
+cp .github/copilot/copilot-changelog.md /tmp/project-changelog.md
 composer update square360/copilot-drupal-instructions
-cp /tmp/yh-changelog.md .github/copilot/copilot-changelog.md
+cp /tmp/project-changelog.md .github/copilot/copilot-changelog.md
 ```
 
 ## 📋 What Happens When Projects Update
@@ -125,7 +125,7 @@ For detailed information, see:
 The package is complete and ready to be published to GitHub. Follow the steps in **NEXT-STEPS.md** to:
 1. Create the GitHub repository
 2. Tag the first release
-3. Install in Yale Health and other projects
+3. Install in your Drupal projects
 4. Share with the Square360 team
 
 ## 📞 Questions?

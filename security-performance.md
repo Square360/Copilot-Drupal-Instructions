@@ -1,5 +1,7 @@
 # Security and Performance Guidelines
 
+> **For GitHub Copilot:** When writing controllers, services, APIs, or data processing code, prioritize security and performance. Always sanitize inputs, use proper access controls, implement caching strategies, and follow Drupal security best practices.
+
 ## Security Best Practices
 
 ### Input Validation and Sanitization

@@ -1,23 +1,12 @@
 # Drupal Module Development Guidelines
 
+> **For GitHub Copilot:** When writing PHP code in `.module`, `.install`, `.theme`, or `src/` files, follow these Drupal-specific standards and patterns. Always prioritize dependency injection, PHPCS compliance, and Drupal best practices.
+
 ## PHPCS and Coding Standards
 
 ### Core Requirements
 - **Always follow Drupal coding standards** as defined by `phpcs` with Drupal and DrupalPractice rulesets
-- **Function naming**### Yale Health Module Naming
-- Core functionality: `yh_core`
-- Custom layouts: `yh_layouts`
-- Data migrations: `yh_migrations`
-- Solr search: `yh_solr`
-- Views locality filter: `yh_views_locality_filter`
-- CAS authentication: `cas_private_page`
-- Node edit UX: `node_edit_sidebar_closed`
-- Admin theme: `yalehealth_gin_overrides`
-
-### Common Helper Functions
-- Use `yh_core` module for core utility functions
-- Use `yh_solr` for search functionality
-- Use `cas_private_page` for page-level CAS authenticationtions in `.module` files must be prefixed with the module name (e.g., `yh_core_function_name`)
+- **Function naming**: Functions in `.module` files must be prefixed with the module name (e.g., `modulename_function_name`)
 - **Hook implementations**: Use proper format `modulename_hook_name()` and document with `@implements hook_name()`
 - **Line length**: Maximum 80 characters per line
 - **Indentation**: 2 spaces for PHP, no tabs
@@ -43,7 +32,7 @@
  * @throws \Exception
  *   When something goes wrong.
  */
-function yh_core_example_function($parameter_name, array $another_param) {
+function modulename_example_function($parameter_name, array $another_param) {
   // Function implementation.
 }
 ```
@@ -231,16 +220,22 @@ $this->messenger()->addError($this->t('Error message'));
 
 ## Project-Specific Module Guidelines
 
-### NJ211 Module Naming
-- Core functionality: `nj211_core`
-- Search functionality: `nj211_search`
-- Sharing features: `nj211_share`
-- Resource app integration: `nj211_resource_app`
+**Note:** This section should be customized for your project after installation.
 
-### Custom Taxonomy Functions
-- Use `nj211_core_get_term_by_code()` for taxonomy lookups
-- Use `nj211_core_get_term_icon()` for term icons
-- Use `nj211_core_get_term_parent_code()` for hierarchy
+### Module Naming Convention
+
+Example modules in this project:
+- Core functionality: `yoursite_core`
+- Custom content types: `yoursite_content`
+- Search functionality: `yoursite_search`
+- Integrations: `yoursite_integrations`
+
+### Common Helper Functions
+
+List project-specific helper functions and their usage here:
+- Use `yoursite_core_helper_function()` for common operations
+- Use `yoursite_core_get_config()` for configuration retrieval
+- Use `yoursite_core_sanitize_input()` for input sanitization
 
 ## Testing and Quality Assurance
 

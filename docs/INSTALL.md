@@ -107,7 +107,14 @@ After running this prompt, review the changes and commit them.
 
 **Option B: Manual Customization**
 
-Edit `.github/copilot/README.md` and update:
+1. Create a project-specific README from the template:
+
+```bash
+cd .github/copilot/
+cp PROJECT-README.md README.md
+```
+
+2. Edit `.github/copilot/README.md` and customize:
 
 - Project name
 - Site URL
@@ -115,8 +122,9 @@ Edit `.github/copilot/README.md` and update:
 - Module prefix (e.g., `yoursite_`)
 - List of custom modules
 - Development environment details
+- Team contacts
 
-Then update examples in `drupal-modules.md` and `themes-frontend.md` to match your project.
+3. Update examples in `drupal-modules.md` and `themes-frontend.md` to match your project.
 
 ### 5. (Optional) Create Personal Developer Instructions
 

@@ -2,7 +2,7 @@
 
 ## General Development Guidance
 
-This file contains best practices and interaction patterns for working with GitHub Copilot on the Yale Health Drupal project.
+This file contains best practices and interaction patterns for working with GitHub Copilot on Drupal projects.
 
 ## Communication Patterns
 

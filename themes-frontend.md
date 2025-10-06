@@ -1,16 +1,24 @@
 # Theme and Frontend Development Guidelines
 
+> **For GitHub Copilot:** When working in `.twig`, `.scss`, `.css`, `.js`, or `.ts` files, apply these frontend development standards. Focus on BEM methodology, Drupal theming patterns, accessibility, and modern JavaScript practices.
+
 ## Drupal Theming Standards
 
 ### Core Principles
 - Use Twig templates, never PHP in templates
 - Preprocess functions should be in `.theme` file
-- Follow naming: `themename_preprocess_Hname: 'Yale Health Theme'
+- Follow naming: `themename_preprocess_HOOK(&$variables)`
+- Use render arrays, not HTML strings
+
+### Theme Info File Example
+
+```yaml
+name: 'Your Theme Name'
 type: theme
 base theme: classy
-core_version_requirement: ^10
-description: 'Custom theme for Yale Health site'$variables)`
-- Use render arrays, not HTML strings
+core_version_requirement: ^10 || ^11
+description: 'Custom theme for your Drupal site'
+```
 
 ### Template Organization
 - Store templates in the `templates/` directory
@@ -85,7 +93,7 @@ export default defineConfig({
   /**
    * Behavior for custom functionality.
    */
-  Drupal.behaviors.yalehealthCustomBehavior = {
+  Drupal.behaviors.themenameCustomBehavior = {
     attach: function (context, settings) {
       // Use context to scope the behavior
       const elements = context.querySelectorAll('.custom-selector');
@@ -231,11 +239,11 @@ component-library:
 
 ```yaml
 # theme_name.info.yml
-name: 'NJ211 Theme'
+name: 'Your Theme Name'
 type: theme
 core_version_requirement: ^10 || ^11
 base theme: gin
-description: 'Custom theme for NJ211 site'
+description: 'Custom theme for your Drupal site'
 
 libraries:
   - theme_name/global

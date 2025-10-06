@@ -1,16 +1,33 @@
-# How GitHub Copilot Will Use These Files
-Context-Aware Assistance: Copilot will automatically apply the relevant instructions based on what you're working on:
+# Overview: How GitHub Copilot Uses These Instructions
 
-- Working on .module files: Will reference drupal-modules.md for PHPCS standards and dependency injection
-- Editing .scss or .js files: Will use themes-frontend.md for frontend best practices
-- Creating forms or templates: Will apply accessibility.md for WCAG compliance
-- Building controllers or services: Will reference security-performance.md for secure coding
+## Context-Aware Assistance
 
-# Key Benefits of This Organization
-- Focused Context: Each file contains domain-specific rules that won't overwhelm Copilot with unrelated information
-- Easier Maintenance: You can update specific areas without affecting other guidelines
-- Team Collaboration: Different team members can focus on their expertise areas
-- Scalability: Easy to add new instruction files as the project grows
+GitHub Copilot automatically applies relevant instructions based on the file you're editing:
+
+| File Type | Copilot References | For |
+|-----------|-------------------|-----|
+| `.module`, `.install`, `.php` in modules | `drupal-modules.md` | PHPCS standards, dependency injection, Drupal APIs |
+| `.scss`, `.css`, `.js`, `.ts` | `themes-frontend.md` | Frontend patterns, BEM, JavaScript behaviors |
+| `.twig`, forms, UI components | `accessibility.md` | WCAG 2.1 AA compliance, semantic HTML |
+| Controllers, services, APIs | `security-performance.md` | Security practices, caching, performance |
+
+**All file types** will reference:
+- `instructions.md` - General Copilot interaction patterns
+- `PROJECT-README.md` / `README.md` - Project-specific context
+- `.copilot.local.md` - Your personal preferences (if present)
+
+## Benefits of This Organization
+
+### For Copilot
+- **Focused Context**: Each file contains domain-specific instructions, preventing information overload
+- **Better Suggestions**: More relevant code completions based on current work context
+- **Consistent Patterns**: Copilot learns your project's specific conventions
+
+### For Developers
+- **Easier Maintenance**: Update specific areas without affecting other guidelines
+- **Team Collaboration**: Different team members can focus on their expertise areas
+- **Scalability**: Easy to add new instruction files as the project grows
+- **Onboarding**: New team members get instant context
 
 # Personal Developer Instructions
 

@@ -1,5 +1,7 @@
 # Accessibility Guidelines - WCAG 2.1 AA Standards
 
+> **For GitHub Copilot:** When creating forms, templates, or UI components, ensure WCAG 2.1 Level AA compliance. Always include proper ARIA attributes, semantic HTML, keyboard navigation, and screen reader support.
+
 ## Core Accessibility Principles
 
 ### Always Ensure
