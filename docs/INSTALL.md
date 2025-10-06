@@ -54,6 +54,7 @@ Add to your project's `.gitattributes`:
 
 ```
 .github/copilot/copilot-changelog.md merge=ours
+.github/copilot/README.md merge=ours
 ```
 
 Configure the merge driver:

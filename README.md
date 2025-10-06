@@ -19,12 +19,22 @@ After installation, use GitHub Copilot to automatically customize the files for 
 
 **Copy this prompt** into Copilot Chat:
 ```
-I just installed square360/copilot-drupal-instructions. Update .github/copilot/
-files to reflect this project by analyzing structure, composer.json, and custom modules/themes.
-Replace generic examples with actual project details. Keep copilot-changelog.md unchanged.
+I just installed the square360/copilot-drupal-instructions package into my Drupal project.
+Please update the files in .github/copilot/ to reflect this project instead of
+the generic examples. Specifically:
+
+1. Update README.md with:
+   - Actual project name and description
+   - Live site URL from the project
+   - Set the GitHub repository URL by checking the actual git remote URLs
+   - Correct module prefix (check web/modules/custom/ for the pattern)
+   - List all custom modules in web/modules/custom/
+   - Note the actual development environment (Lando/DDEV/other)
+   - Note the hosting platform (Pantheon/Aquia/other)
+
+2. When done remove the ## Installation, ## Auto-Customization with Copilot and ## Manual Configuration sections from the Readme.md file.
 ```
 
-See [COPILOT-PROMPT.md](https://github.com/Square360/Copilot-Drupal-Instructions/blob/master/COPILOT-PROMPT.md) for detailed prompts and instructions.
 
 ## Manual Configuration
 
