@@ -1,0 +1,96 @@
+# Local Developer-Specific Copilot Instructions
+
+> **Note:** This is a template file. Copy it to `.copilot.local.md` to use it.
+> Your `.copilot.local.md` file is git-ignored and won't be committed to the repository.
+
+This file allows you to:
+- Test new instruction patterns before proposing them to the team
+- Add personal coding preferences or shortcuts
+- Override or supplement team-wide instructions
+- Document local development environment specifics
+
+## Usage
+
+```bash
+cp .copilot.local.md.example .copilot.local.md
+```
+
+Then edit `.copilot.local.md` with your personal instructions. GitHub Copilot will automatically reference this file when working in this directory.
+
+---
+
+## Example: Personal Preferences
+
+### My Coding Style Preferences
+
+When writing PHP code for me specifically:
+- Use explicit type hints even when not strictly required
+- Prefer early returns over nested conditionals
+- Add inline comments explaining "why" not "what"
+
+### My Local Environment
+
+- Local development: Lando on macOS
+- PHP version: 8.2
+- Database: MySQL 8.0
+- Local domain: `https://projectname.lndo.site`
+
+### Personal Shortcuts
+
+When I say "add a service", create:
+1. Service definition in `modulename.services.yml`
+2. Service class in `src/Services/`
+3. Dependency injection in the controller/form
+4. PHPDoc block with usage examples
+
+### Testing Instructions
+
+When writing code in this project, I prefer to:
+- Test using `lando phpunit` (not `composer test`)
+- Write feature tests in addition to unit tests
+- Include edge cases in test coverage
+
+### Custom Aliases
+
+When I mention these terms:
+- "the theme" = `web/themes/custom/mytheme`
+- "helper module" = `web/modules/custom/mysite_helpers`
+- "base controller" = `Drupal\mysite_core\Controller\BaseSiteController`
+
+---
+
+## Ideas to Test
+
+### Experimental Instruction Pattern
+
+[Use this section to test new instruction patterns before proposing them to the team]
+
+When creating a new content type:
+1. Add it to `web/modules/custom/mysite_content/config/install/`
+2. Create a corresponding node template in the theme
+3. Add view mode configuration
+4. Document it in `CONTENT_TYPES.md`
+
+---
+
+## Personal Notes
+
+[Your personal development notes, reminders, or context that helps Copilot assist you better]
+
+- This project has a custom form validation pattern in the `mysite_forms` module
+- We're migrating from Drupal 9, so check for deprecated functions
+- The client prefers British English spelling in user-facing strings
+- Remember to clear cache after config changes: `lando drush cr`
+
+---
+
+## Temporary Overrides
+
+[Instructions you want Copilot to follow temporarily, like during a specific feature development]
+
+<!-- Example:
+Currently working on: Migration from old CMS
+- Focus on content migration scripts
+- Use the `mysite_migrate` module for all migrations
+- Follow the pattern in `MyContentMigration.php`
+-->

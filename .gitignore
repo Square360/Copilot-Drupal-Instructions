@@ -18,5 +18,8 @@ phpunit.xml
 *.log
 .env
 
+# Developer-specific Copilot instructions (local only)
+.copilot.local.md
+
 # Don't ignore these important files
 !.gitattributes

@@ -56,6 +56,26 @@ After installation, update these sections in your copy:
 - **Code Quality**: Add project-specific quality standards
 - **Additional Guidelines**: Any project-specific patterns or requirements
 
+## Personal Developer Instructions (Optional)
+
+Create a `.copilot.local.md` file in your project's `.github/copilot/` directory for personal, developer-specific instructions that won't be committed to the repository.
+
+**Setup:**
+```bash
+cd .github/copilot/
+cp .copilot.local.md.example .copilot.local.md
+# Edit .copilot.local.md with your personal preferences
+```
+
+**Use cases:**
+- Test new instruction patterns before proposing to the team
+- Add personal coding style preferences
+- Document your local development environment specifics
+- Create personal shortcuts and aliases
+- Override or supplement team instructions temporarily
+
+The `.copilot.local.md` file is git-ignored by default and provides a safe space for experimentation and personal customization without affecting the team.
+
 ## Quick Reference Commands
 
 **Development:**
