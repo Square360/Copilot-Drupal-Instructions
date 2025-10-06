@@ -124,28 +124,42 @@ See [INSTALL.md](./INSTALL.md) for complete installation instructions.
 - Your project-specific `copilot-changelog.md` entries are lost after running `composer update`
 - Changes to the changelog don't persist
 
+**Root Cause:**
+This should NOT happen with version 1.1.0+ of the package. The `copilot-changelog.md` file is excluded from the composer package distribution via `export-ignore`, meaning it will only be created on first install and never updated.
+
 **Solution:**
 
-1. Ensure `.gitattributes` is configured in your project root:
-
-```
-.github/copilot/copilot-changelog.md merge=ours
-.github/copilot/README.md merge=ours
-```
-
-2. Configure the merge driver:
+1. **Check your package version:**
 
 ```bash
-git config merge.ours.driver true
+composer show square360/copilot-drupal-instructions
 ```
 
-Or globally:
+If you're on an older version, update to the latest:
 
 ```bash
-git config --global merge.ours.driver true
+composer update square360/copilot-drupal-instructions
 ```
 
-3. Try the update again
+2. **Verify the file is excluded:**
+
+After updating, the `copilot-changelog.md` should not be included in future updates. Your project-specific entries will be preserved automatically.
+
+3. **If you lost changelog entries:**
+
+Check git history to recover them:
+
+```bash
+git log .github/copilot/copilot-changelog.md
+git show <commit-hash>:.github/copilot/copilot-changelog.md > .github/copilot/copilot-changelog.md
+```
+
+**How It Works:**
+- The package repository has `copilot-changelog.md` as a template
+- The `.gitattributes` file marks it as `export-ignore`
+- When composer installs the package, this file is NOT included in the distribution
+- On first install, it's created from the repo
+- On updates, composer doesn't have this file to overwrite yours with
 
 ---
 
