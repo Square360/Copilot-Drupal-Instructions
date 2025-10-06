@@ -44,30 +44,10 @@ composer require square360/copilot-drupal-instructions
 
 The files will be installed to `.github/copilot/`.
 
-### 4. Configure Git Merge Strategy
-
-This ensures your project-specific `copilot-changelog.md` won't be overwritten during updates.
-
-**Option A: Project-level (recommended)**
-
-Add to your project's `.gitattributes`:
-
-```
-.github/copilot/copilot-changelog.md merge=ours
-.github/copilot/README.md merge=ours
-```
-
-Configure the merge driver:
-
-```bash
-git config merge.ours.driver true
-```
-
-**Option B: Global configuration**
-
-```bash
-git config --global merge.ours.driver true
-```
+**Note:** The `copilot-changelog.md` and `PROJECT-README.md` template files are excluded from the package distribution (via `export-ignore`). This means:
+- On **first install**: These files will be created from the repository
+- On **updates**: These files will NOT be touched or overwritten
+- Your project-specific customizations are safe during composer updates
 
 ### 4. Customize for Your Project
 

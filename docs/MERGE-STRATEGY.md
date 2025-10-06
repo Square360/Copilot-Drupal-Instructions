@@ -1,59 +1,62 @@
-# Understanding the Git Merge Strategy
+# Understanding Package File Protection
 
-## How the "merge=ours" Strategy Works
+## How export-ignore Works
 
-When you update the copilot-drupal-instructions package via Composer, git may need to merge changes from the package repository into your project. The `.gitattributes` file tells git how to handle conflicts for specific files.
+This package uses git's `export-ignore` attribute to protect your project-specific files from being overwritten during composer updates.
 
 ## Files Protected from Updates
 
-The following files in your project will **NEVER** be overwritten by package updates:
+The following files will **NEVER** be overwritten by package updates:
 
 1. **`copilot-changelog.md`** - Your project-specific development history
-2. **`.gitattributes`** - Your merge strategy configuration
+2. **`PROJECT-README.md`** - Template for project-specific README
+
+These files are excluded from the composer package distribution, so they only exist in the git repository, not in the installed package.
 
 ## How It Works
 
 ### Step 1: Package Installation
+
 ```bash
 composer require square360/copilot-drupal-instructions
 ```
 
-This installs the package files to `.github/copilot/` including an empty template `copilot-changelog.md`.
+This installs the package files to `.github/copilot/` including template files like `copilot-changelog.md` and `PROJECT-README.md`.
 
 ### Step 2: Customize Your Project
-You edit `.github/copilot/copilot-changelog.md` to add your project's development history.
 
-### Step 3: Configure Merge Strategy
-```bash
-# Tell git to use the "ours" merge driver
-git config merge.ours.driver true
+You edit `.github/copilot/copilot-changelog.md` to add your project's development history and customize other files for your project.
 
-# Add to your project's .gitattributes
-echo ".github/copilot/copilot-changelog.md merge=ours" >> .gitattributes
-```
+### Step 3: Package Updates
 
-### Step 4: Package Updates
 ```bash
 composer update square360/copilot-drupal-instructions
 ```
 
 When the package updates:
-- ✅ **Updated instruction files are pulled in** (drupal-modules.md, themes-frontend.md, etc.)
-- ✅ **Your changelog is preserved** - The "merge=ours" strategy keeps YOUR version
-- ✅ **No merge conflicts** - Git automatically prefers your version for protected files
+- ✅ **Updated instruction files are pulled in** (drupal-modules.md, themes-frontend.md, accessibility.md, etc.)
+- ✅ **Your changelog is preserved** - It's not included in the distributed package
+- ✅ **Your PROJECT-README.md is preserved** - Also excluded from distribution
+- ✅ **No merge conflicts** - Protected files aren't part of the update
 
 ## The .gitattributes File
 
-In the package repository (`temp-copilot-package/.gitattributes`):
-```
-# Preserve project-specific changelog during composer updates
-copilot-changelog.md merge=ours
+In the package repository (`.gitattributes`):
 
-# Keep .gitattributes itself during updates
-.gitattributes merge=ours
+```gitattributes
+# Exclude files from composer package (via export-ignore)
+/copilot-changelog.md export-ignore
+/PROJECT-README.md export-ignore
+/docs export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/CHANGELOG.md export-ignore
+/COPILOT-PROMPT.md export-ignore
 ```
 
-This tells git: "When merging these files, always keep the version in the current repository (ours), ignore changes from the update (theirs)."
+This tells composer: "When creating the package distribution, don't include these files."
+
+**Result:** These files remain in the git repository for reference, but when you install/update the package via composer, they're not included in what gets installed, so they can't overwrite your files.
 
 ## What Gets Updated vs Preserved
 
@@ -105,43 +108,51 @@ cat .github/copilot/copilot-changelog.md
 
 ### Problem: Changelog Gets Overwritten
 
-**Solution:**
+**This should NOT happen** with version 1.1.0+ of the package.
+
+**Check your version:**
 ```bash
-# 1. Ensure .gitattributes exists in your project root
-cat .gitattributes
-
-# 2. Ensure it contains the merge rule
-grep "copilot-changelog.md" .gitattributes
-
-# 3. Configure the merge driver
-git config merge.ours.driver true
-
-# 4. Verify configuration
-git config --get merge.ours.driver
-# Should output: true
+composer show square360/copilot-drupal-instructions
 ```
 
-### Problem: Merge Conflicts on Update
+If you're on an older version (<1.1.0), update to get the export-ignore protection:
+```bash
+composer update square360/copilot-drupal-instructions
+```
+
+**Recover lost entries:**
+If you lost changelog entries, check git history:
+```bash
+git log .github/copilot/copilot-changelog.md
+git show <commit-hash>:.github/copilot/copilot-changelog.md
+```
+
+### Problem: Template Files Missing on First Install
+
+If `copilot-changelog.md` or `PROJECT-README.md` are missing after initial install, they may have been excluded. These files are in the git repository but not in the composer distribution.
 
 **Solution:**
+Copy them from the repository manually:
 ```bash
-# Accept your version (ours)
-git checkout --ours .github/copilot/copilot-changelog.md
-git add .github/copilot/copilot-changelog.md
-git commit -m "Keep our changelog during update"
+cd .github/copilot/
+curl -O https://raw.githubusercontent.com/Square360/Copilot-Drupal-Instructions/master/copilot-changelog.md
+curl -O https://raw.githubusercontent.com/Square360/Copilot-Drupal-Instructions/master/PROJECT-README.md
 ```
 
 ### Problem: Files Not in Expected Location
 
 **Solution:**
-Check composer.json installer-paths configuration. The package specifies:
+Check composer.json installer-paths configuration. Ensure you have:
 ```json
 "extra": {
   "installer-paths": {
-    ".github/copilot/": ["type:drupal-library"]
+    ".github/{$name}/": ["square360/copilot-drupal-instructions"],
+    "web/libraries/{$name}/": ["type:drupal-library"]
   }
 }
 ```
+
+The specific path for this package must come **before** the generic drupal-library path.
 
 ## Best Practices
 
