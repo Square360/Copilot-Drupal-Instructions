@@ -1,5 +1,9 @@
 # GitHub Copilot Interaction Instructions
 
+> **For GitHub Copilot:** At the END of every development session, you MUST proactively ask: "Should I summarize the completed work and update the changelog?" Then add a comprehensive summary to `.github/copilot/copilot-changelog.md`. This is not optional - it's a required workflow step.
+
+> **For Developers:** Always end sessions by asking: "Summarize the work completed in this session and add it to .github/copilot/copilot-changelog.md"
+
 ## General Development Guidance
 
 This file contains best practices and interaction patterns for working with GitHub Copilot on Drupal projects.
@@ -64,6 +68,13 @@ This file contains best practices and interaction patterns for working with GitH
 - **Explain Technical Decisions**: Document why specific approaches were chosen
 - **Provide Multiple Options**: When applicable, offer alternative solutions
 - **Test Thoroughly**: Validate changes before marking tasks complete
+
+## Common shortcuts and commands
+
+### Shortcuts
+ - When I say "Add to changelog", add a detailed entry to `.github/copilot/copilot-changelog.md` summarizing the work done in this session.
+ - When I say "Run code sniff", execute `lando composer code-sniff` and report any issues found.
+ - When I say "terminal done", it means "the terminal command has completed successfully, please continue".
 
 ## Common Development Patterns
 
@@ -168,12 +179,14 @@ Before concluding any development session:
 - Accessibility best practices
 - Performance optimization techniques
 
+
 ---
 
 ## Notes for Future Sessions
 
 - Always check recent changelog entries before starting
 - Review existing patterns before implementing new features
+- Do not look for code changes beyond the scope of the task
 - Test changes in development environment first
 - Document any new patterns or decisions made
 

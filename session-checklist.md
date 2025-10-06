@@ -1,5 +1,9 @@
 # Development Session Checklist
 
+> **For GitHub Copilot:** At the end of EVERY development session, proactively offer to summarize the completed work and update `.github/copilot/copilot-changelog.md`. Do not wait for the user to ask - this is a required step.
+
+> **For Developers:** Make it a habit to ask Copilot to summarize your session and update the changelog. Simply say: "Summarize the work completed in this session and add it to .github/copilot/copilot-changelog.md"
+
 ## End-of-Session Requirements
 
 At the conclusion of every development session, ensure the following tasks are completed:
@@ -43,7 +47,7 @@ When adding to `copilot-changelog.md`, use this structure:
 
 - **Problem**: [Description of what needed to be solved]
 - **Solution**: [High-level approach taken]
-- **Implementation**: 
+- **Implementation**:
   - [Bullet point of specific changes made]
   - [Technical details and services used]
   - [Files modified or created]
@@ -66,7 +70,7 @@ When adding to `copilot-changelog.md`, use this structure:
 Before closing the session, confirm:
 - ✅ All requested tasks have been completed
 - ✅ Code quality standards maintained
-- ✅ Documentation updated appropriately  
+- ✅ Documentation updated appropriately
 - ✅ User experience improvements validated
 - ✅ No regressions introduced
 
