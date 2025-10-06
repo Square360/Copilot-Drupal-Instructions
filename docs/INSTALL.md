@@ -82,25 +82,14 @@ the generic examples. Specifically:
 1. Update README.md with:
    - Actual project name and description
    - Live site URL from the project
-   - GitHub repository URL
+   - Set the GitHub repository URL by checking the actual git remote URLs
    - Correct module prefix (check web/modules/custom/ for the pattern)
    - List all custom modules in web/modules/custom/
-   - Document the actual development environment (Lando/DDEV/other)
-   - Note the hosting platform (Pantheon/Acquia/other)
+   - Note the actual development environment (Lando/DDEV/other)
+   - Note the hosting platform (Pantheon/Aquia/other)
 
-2. Update drupal-modules.md:
-   - Replace example function names with the actual module prefix
-   - Update the "Module Naming" section with actual custom modules
-   - Update the "Common Helper Functions" section if applicable
+2. When done remove the ## Installation, ## Auto-Customization with Copilot and ## Manual Configuration sections from the Readme.md file.
 
-3. Update themes-frontend.md:
-   - Replace example Drupal.behaviors with actual theme name
-   - Update theme info example with actual theme name from web/themes/custom/
-
-4. Keep copilot-changelog.md as-is (it's project-specific)
-
-Please examine the project structure, composer.json, and existing modules/themes
-to gather the correct information, then update these files accordingly.
 ```
 
 After running this prompt, review the changes and commit them.

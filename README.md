@@ -30,7 +30,8 @@ See [COPILOT-PROMPT.md](https://github.com/Square360/Copilot-Drupal-Instructions
 
 Alternatively, customize the following in your `.github/copilot/README.md`:
 
-**Site Information:**
+## Site Information
+
 - Site name: [Your Site Name]
 - LIVE site URL: [Your production URL]
 - REPO URL: [Your GitHub repository]
@@ -41,10 +42,11 @@ Alternatively, customize the following in your `.github/copilot/README.md`:
 The coding standards and guidelines are organized by domain to provide focused, context-aware assistance:
 
 ### Core Development
-- **[drupal-modules.md](./drupal-modules.md)** - Module development, PHPCS standards, dependency injection, and Drupal best practices
-- **[themes-frontend.md](./themes-frontend.md)** - Theming, CSS/SCSS, JavaScript, Vite, and Webpack configuration
 - **[accessibility.md](./accessibility.md)** - WCAG 2.1 AA compliance and Drupal accessibility standards
+- **[drupal-modules.md](./drupal-modules.md)** - Module development, PHPCS standards, dependency injection, and Drupal best practices
+- **[instructions.md](./instructions.md)** - General guidelines for effective Copilot interaction and asking questions
 - **[security-performance.md](./security-performance.md)** - Security practices, performance optimization, and caching strategies
+- **[themes-frontend.md](./themes-frontend.md)** - Theming, CSS/SCSS, JavaScript, Vite, and Webpack configuration
 
 ### Customization Areas
 
