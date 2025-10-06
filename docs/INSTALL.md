@@ -118,7 +118,24 @@ Edit `.github/copilot/README.md` and update:
 
 Then update examples in `drupal-modules.md` and `themes-frontend.md` to match your project.
 
-### 5. Start Using
+### 5. (Optional) Create Personal Developer Instructions
+
+Create a `.copilot.local.md` file for personal, developer-specific instructions that won't be committed:
+
+```bash
+cd .github/copilot/
+cp .copilot.local.md.example .copilot.local.md
+# Edit with your personal preferences
+```
+
+Add to your project's `.gitignore`:
+```
+.github/copilot/.copilot.local.md
+```
+
+Use this for personal coding preferences, testing new patterns, or local environment details.
+
+### 6. Start Using
 
 GitHub Copilot will automatically reference these files when you're working on your Drupal project.
 
