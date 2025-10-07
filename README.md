@@ -32,7 +32,11 @@ the generic examples. Specifically:
    - Note the actual development environment (Lando/DDEV/other)
    - Note the hosting platform (Pantheon/Aquia/other)
 
-2. When done remove the ## Installation, ## Auto-Customization with Copilot and ## Manual Configuration sections from the Readme.md file.
+2. Copy the "Changelog Template" section from README.md to a new file COPILOT-CHANGELOG.md,
+   replacing [Project Name] with the actual project name.
+
+3. When done remove the ## Installation, ## Auto-Customization with Copilot,
+   ## Manual Configuration, and ## Changelog Template sections from README.md.
 ```
 
 
@@ -87,6 +91,57 @@ cp .copilot.local.md.example .copilot.local.md
 - Override or supplement team instructions temporarily
 
 The `.copilot.local.md` file is git-ignored by default and provides a safe space for experimentation and personal customization without affecting the team.
+
+## Changelog Template
+
+**Note:** This section will be removed after auto-customization. Copy this template to `COPILOT-CHANGELOG.md` to track your project's development history.
+
+```markdown
+# GitHub Copilot Development Changelog
+
+## [Project Name] Drupal Site
+
+This changelog tracks significant development activities, technical decisions, and improvements made to your Drupal site with assistance from GitHub Copilot.
+
+**Instructions:** Update this file after each significant development session to maintain a record of changes and decisions.
+
+---
+
+## Template for Entries
+
+```markdown
+## [YYYY-MM-DD] - Brief Description
+
+### Added
+- New features or files added
+
+### Changed
+- Modifications to existing functionality
+
+### Fixed
+- Bug fixes and corrections
+
+### Technical Details
+- Implementation notes
+- Code patterns used
+- Decisions made and reasoning
+
+### Testing
+- How changes were verified
+- Manual testing performed
+- Issues encountered and resolved
+```
+
+---
+
+## Notes
+
+- Always update this file at the end of significant development sessions
+- Include enough technical detail for future developers to understand decisions
+- Reference related files, functions, or modules when applicable
+- Document any deviations from standard patterns and why they were necessary
+- This file is project-specific and will not be overwritten by package updates
+```
 
 ## Quick Reference Commands
 

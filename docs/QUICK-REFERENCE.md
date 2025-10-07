@@ -6,7 +6,7 @@
 ```bash
 composer require square360/copilot-drupal-instructions
 git config merge.ours.driver true
-echo ".github/copilot/copilot-changelog.md merge=ours" >> .gitattributes
+echo ".github/copilot/COPILOT-CHANGELOG.md merge=ours" >> .gitattributes
 ```
 
 ### Auto-Customize with Copilot
@@ -17,7 +17,7 @@ I just installed the square360/copilot-drupal-instructions package. Please updat
 structure, composer.json, and existing modules/themes. Update README.md with actual 
 project details (name, URLs, module prefix, custom modules list), and update 
 examples in drupal-modules.md and themes-frontend.md to use the correct naming.
-Keep copilot-changelog.md as-is.
+Keep COPILOT-CHANGELOG.md as-is.
 ```
 
 ### Update Package
@@ -60,7 +60,7 @@ composer update square360/copilot-drupal-instructions
 - session-checklist.md
 
 ### 🔒 Protected
-- copilot-changelog.md (yours)
+- COPILOT-CHANGELOG.md (yours)
 
 ---
 
@@ -69,7 +69,7 @@ composer update square360/copilot-drupal-instructions
 **Changelog overwrites?**
 ```bash
 git config merge.ours.driver true
-echo ".github/copilot/copilot-changelog.md merge=ours" >> .gitattributes
+echo ".github/copilot/COPILOT-CHANGELOG.md merge=ours" >> .gitattributes
 ```
 
 **Files in wrong place?**
@@ -93,7 +93,7 @@ Square360/copilot-drupal-instructions
 Your Project
 └── .github/copilot/
     ├── Installed files (updated)
-    └── copilot-changelog.md (protected)
+    └── COPILOT-CHANGELOG.md (protected)
 ```
 
 ---

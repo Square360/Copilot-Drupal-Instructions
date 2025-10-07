@@ -1,15 +1,15 @@
 # Development Session Checklist
 
-> **For GitHub Copilot:** At the end of EVERY development session, proactively offer to summarize the completed work and update `.github/copilot/copilot-changelog.md`. Do not wait for the user to ask - this is a required step.
+> **For GitHub Copilot:** At the end of EVERY development session, proactively offer to summarize the completed work and update `.github/copilot/COPILOT-CHANGELOG.md`. Do not wait for the user to ask - this is a required step.
 
-> **For Developers:** Make it a habit to ask Copilot to summarize your session and update the changelog. Simply say: "Summarize the work completed in this session and add it to .github/copilot/copilot-changelog.md"
+> **For Developers:** Make it a habit to ask Copilot to summarize your session and update the changelog. Simply say: "Summarize the work completed in this session and add it to .github/copilot/COPILOT-CHANGELOG.md"
 
 ## End-of-Session Requirements
 
 At the conclusion of every development session, ensure the following tasks are completed:
 
 ### 1. Update Changelog Documentation ✅
-- [ ] Add new accomplishments to `.github/copilot/copilot-changelog.md`
+- [ ] Add new accomplishments to `.github/copilot/COPILOT-CHANGELOG.md`
 - [ ] Include problem/solution descriptions for each task
 - [ ] Document technical implementation details with code examples
 - [ ] Note any new patterns or standards established
@@ -40,7 +40,7 @@ At the conclusion of every development session, ensure the following tasks are c
 
 ## Changelog Update Template
 
-When adding to `copilot-changelog.md`, use this structure:
+When adding to `COPILOT-CHANGELOG.md`, use this structure:
 
 ```markdown
 ### X. [Feature/Enhancement Name] *(YYYY-MM-DD HH:MM timezone)*
