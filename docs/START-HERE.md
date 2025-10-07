@@ -20,7 +20,7 @@ I've transformed your copilot instruction files into a reusable Composer package
 The package includes a `.gitattributes` file that tells git:
 ```
 ```
-COPILOT-CHANGELOG.md merge=ours
+CHANGELOG-COPILOT.md merge=ours
 README.md merge=ours
 ```
 ```
@@ -45,7 +45,7 @@ When you run `composer update square360/copilot-drupal-instructions`:
 - `session-checklist.md` - QA checklist
 
 ### Protected Files (Never Update)
-- `COPILOT-CHANGELOG.md` - Empty template; each project maintains their own
+- `CHANGELOG-COPILOT.md` - Empty template; each project maintains their own
 
 ### Package Files
 - `composer.json` - Composer configuration
@@ -97,7 +97,7 @@ composer require square360/copilot-drupal-instructions:^1.0
 
 # Configure merge protection
 git config merge.ours.driver true
-echo ".github/copilot/COPILOT-CHANGELOG.md merge=ours" >> .gitattributes
+echo ".github/copilot/CHANGELOG-COPILOT.md merge=ours" >> .gitattributes
 
 # Commit
 git add .
@@ -116,7 +116,7 @@ I just installed the square360/copilot-drupal-instructions package. Please updat
 structure, composer.json, and existing modules/themes. Update README.md with actual
 project details (name, URLs, module prefix, custom modules list), and update
 examples in drupal-modules.md and themes-frontend.md to use the correct naming.
-Keep COPILOT-CHANGELOG.md as-is.
+Keep CHANGELOG-COPILOT.md as-is.
 ```
 
 Copilot will analyze your project and update all the files automatically! Review and commit the changes.
@@ -126,10 +126,10 @@ Copilot will analyze your project and update all the files automatically! Review
 ```bash
 # Your current changelog has project-specific history
 # Make sure to keep it!
-cp .github/copilot/COPILOT-CHANGELOG.md ~/yh-changelog-backup.md
+cp .github/copilot/CHANGELOG-COPILOT.md ~/yh-changelog-backup.md
 
 # After composer install, restore it
-cp ~/yh-changelog-backup.md .github/copilot/COPILOT-CHANGELOG.md
+cp ~/yh-changelog-backup.md .github/copilot/CHANGELOG-COPILOT.md
 ```
 
 ## Testing the Setup
@@ -157,7 +157,7 @@ composer update square360/copilot-drupal-instructions
 
 **Customize:**
 - Edit README.md for project specifics
-- Maintain your own COPILOT-CHANGELOG.md
+- Maintain your own CHANGELOG-COPILOT.md
 
 ### For Package Maintenance
 

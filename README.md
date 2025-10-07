@@ -32,7 +32,7 @@ the generic examples. Specifically:
    - Note the actual development environment (Lando/DDEV/other)
    - Note the hosting platform (Pantheon/Aquia/other)
 
-2. Copy the "Changelog Template" section from README.md to a new file COPILOT-CHANGELOG.md,
+2. Copy the "Changelog Template" section from README.md to a new file CHANGELOG-COPILOT.md,
    replacing [Project Name] with the actual project name.
 
 3. When done remove the ## Installation, ## Auto-Customization with Copilot,
@@ -94,7 +94,7 @@ The `.copilot.local.md` file is git-ignored by default and provides a safe space
 
 ## Changelog Template
 
-**Note:** This section will be removed after auto-customization. Copy this template to `COPILOT-CHANGELOG.md` to track your project's development history.
+**Note:** This section will be removed after auto-customization. Copy this template to `CHANGELOG-COPILOT.md` to track your project's development history.
 
 ```markdown
 # GitHub Copilot Development Changelog

@@ -123,8 +123,8 @@ See [INSTALL.md](./INSTALL.md) for complete installation instructions.
 **This should NOT happen** with the current package design.
 
 **How It Works:**
-- The `COPILOT-CHANGELOG.md` template is included in the installed README.md file
-- The auto-customization prompt copies this template to `COPILOT-CHANGELOG.md` and customizes it
+- The `CHANGELOG-COPILOT.md` template is included in the installed README.md file
+- The auto-customization prompt copies this template to `CHANGELOG-COPILOT.md` and customizes it
 - After copying, the template section is removed from README.md
 - Future updates only update instruction files, not the project-specific changelog
 
@@ -141,11 +141,11 @@ Please update the files in .github/copilot/ to reflect this project...
 
 2. **Manual recovery:**
 
-If the template section was removed but `COPILOT-CHANGELOG.md` wasn't created, copy the template from the package repository:
+If the template section was removed but `CHANGELOG-COPILOT.md` wasn't created, copy the template from the package repository:
 
 ```bash
 cd .github/copilot/
-curl -O https://raw.githubusercontent.com/Square360/Copilot-Drupal-Instructions/master/COPILOT-CHANGELOG.md
+curl -O https://raw.githubusercontent.com/Square360/Copilot-Drupal-Instructions/master/CHANGELOG-COPILOT.md
 ```
 
 3. **Recover lost entries from git:**
@@ -153,8 +153,8 @@ curl -O https://raw.githubusercontent.com/Square360/Copilot-Drupal-Instructions/
 If you had a changelog that got overwritten:
 
 ```bash
-git log .github/copilot/COPILOT-CHANGELOG.md
-git show <commit-hash>:.github/copilot/COPILOT-CHANGELOG.md > .github/copilot/COPILOT-CHANGELOG.md
+git log .github/copilot/CHANGELOG-COPILOT.md
+git show <commit-hash>:.github/copilot/CHANGELOG-COPILOT.md > .github/copilot/CHANGELOG-COPILOT.md
 ```
 
 ---

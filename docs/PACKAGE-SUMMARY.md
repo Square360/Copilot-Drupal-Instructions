@@ -18,7 +18,7 @@ The `/temp-copilot-package/` directory contains a fully configured Composer pack
 - ✅ `session-checklist.md` - QA checklist
 
 ### Project-Specific Template
-- ✅ `COPILOT-CHANGELOG.md` - Empty template (will be preserved in projects)
+- ✅ `CHANGELOG-COPILOT.md` - Empty template (will be preserved in projects)
 
 ### Package Configuration
 - ✅ `composer.json` - Composer package definition
@@ -66,7 +66,7 @@ cd /path/to/your/drupal-project
 composer config repositories.copilot-instructions vcs https://github.com/Square360/Copilot-Drupal-Instructions
 composer require square360/copilot-drupal-instructions:^1.0
 git config merge.ours.driver true
-echo ".github/copilot/COPILOT-CHANGELOG.md merge=ours" >> .gitattributes
+echo ".github/copilot/CHANGELOG-COPILOT.md merge=ours" >> .gitattributes
 ```
 
 ### 3. Customize for Your Project
@@ -78,9 +78,9 @@ Edit `.github/copilot/README.md` with:
 
 ### 4. Preserve Your Changelog
 ```bash
-cp .github/copilot/COPILOT-CHANGELOG.md /tmp/project-changelog.md
+cp .github/copilot/CHANGELOG-COPILOT.md /tmp/project-changelog.md
 composer update square360/copilot-drupal-instructions
-cp /tmp/project-changelog.md .github/copilot/COPILOT-CHANGELOG.md
+cp /tmp/project-changelog.md .github/copilot/CHANGELOG-COPILOT.md
 ```
 
 ## 📋 What Happens When Projects Update
@@ -95,7 +95,7 @@ composer update square360/copilot-drupal-instructions
 - New features and improvements
 
 ### 🔒 Protected from Updates
-- Project's `COPILOT-CHANGELOG.md` (development history)
+- Project's `CHANGELOG-COPILOT.md` (development history)
 - Any project-specific customizations
 
 ## 🎁 Benefits

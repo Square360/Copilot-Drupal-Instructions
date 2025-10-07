@@ -8,7 +8,7 @@ This package uses git's `export-ignore` attribute to protect your project-specif
 
 The following files will **NEVER** be overwritten by package updates:
 
-1. **`COPILOT-CHANGELOG.md`** - Your project-specific development history
+1. **`CHANGELOG-COPILOT.md`** - Your project-specific development history
 2. **`PROJECT-README.md`** - Template for project-specific README
 
 These files are excluded from the composer package distribution, so they only exist in the git repository, not in the installed package.
@@ -21,11 +21,11 @@ These files are excluded from the composer package distribution, so they only ex
 composer require square360/copilot-drupal-instructions
 ```
 
-This installs the package files to `.github/copilot/` including template files like `COPILOT-CHANGELOG.md` and `PROJECT-README.md`.
+This installs the package files to `.github/copilot/` including template files like `CHANGELOG-COPILOT.md` and `PROJECT-README.md`.
 
 ### Step 2: Customize Your Project
 
-You edit `.github/copilot/COPILOT-CHANGELOG.md` to add your project's development history and customize other files for your project.
+You edit `.github/copilot/CHANGELOG-COPILOT.md` to add your project's development history and customize other files for your project.
 
 ### Step 3: Package Updates
 
@@ -45,7 +45,7 @@ In the package repository (`.gitattributes`):
 
 ```gitattributes
 # Exclude files from composer package (via export-ignore)
-/COPILOT-CHANGELOG.md export-ignore
+/CHANGELOG-COPILOT.md export-ignore
 /PROJECT-README.md export-ignore
 /docs export-ignore
 /.gitattributes export-ignore
@@ -72,7 +72,7 @@ This tells composer: "When creating the package distribution, don't include thes
 - `session-checklist.md` - QA checklist
 
 ### 🔒 Always Preserved (Your Project)
-- `COPILOT-CHANGELOG.md` - Your development history
+- `CHANGELOG-COPILOT.md` - Your development history
 - Any customizations you make to the package files
 
 ## Testing the Strategy
@@ -83,11 +83,11 @@ This tells composer: "When creating the package distribution, don't include thes
 composer require square360/copilot-drupal-instructions
 
 # Add content to changelog
-echo "## [2025-10-05] - My first entry" >> .github/copilot/COPILOT-CHANGELOG.md
+echo "## [2025-10-05] - My first entry" >> .github/copilot/CHANGELOG-COPILOT.md
 
 # Configure merge strategy
 git config merge.ours.driver true
-echo ".github/copilot/COPILOT-CHANGELOG.md merge=ours" >> .gitattributes
+echo ".github/copilot/CHANGELOG-COPILOT.md merge=ours" >> .gitattributes
 
 # Commit
 git add .
@@ -100,7 +100,7 @@ git commit -m "Add copilot instructions with custom changelog"
 composer update square360/copilot-drupal-instructions
 
 # Check your changelog
-cat .github/copilot/COPILOT-CHANGELOG.md
+cat .github/copilot/CHANGELOG-COPILOT.md
 # Should still contain "My first entry"!
 ```
 
@@ -123,19 +123,19 @@ composer update square360/copilot-drupal-instructions
 **Recover lost entries:**
 If you lost changelog entries, check git history:
 ```bash
-git log .github/copilot/COPILOT-CHANGELOG.md
-git show <commit-hash>:.github/copilot/COPILOT-CHANGELOG.md
+git log .github/copilot/CHANGELOG-COPILOT.md
+git show <commit-hash>:.github/copilot/CHANGELOG-COPILOT.md
 ```
 
 ### Problem: Template Files Missing on First Install
 
-If `COPILOT-CHANGELOG.md` or `PROJECT-README.md` are missing after initial install, they may have been excluded. These files are in the git repository but not in the composer distribution.
+If `CHANGELOG-COPILOT.md` or `PROJECT-README.md` are missing after initial install, they may have been excluded. These files are in the git repository but not in the composer distribution.
 
 **Solution:**
 Copy them from the repository manually:
 ```bash
 cd .github/copilot/
-curl -O https://raw.githubusercontent.com/Square360/Copilot-Drupal-Instructions/master/COPILOT-CHANGELOG.md
+curl -O https://raw.githubusercontent.com/Square360/Copilot-Drupal-Instructions/master/CHANGELOG-COPILOT.md
 curl -O https://raw.githubusercontent.com/Square360/Copilot-Drupal-Instructions/master/PROJECT-README.md
 ```
 
@@ -171,13 +171,13 @@ The specific path for this package must come **before** the generic drupal-libra
    - Review what changed: `composer show square360/copilot-drupal-instructions --all`
 
 4. **Maintain Changelog**
-   - Update your project's `COPILOT-CHANGELOG.md` after significant development sessions
+   - Update your project's `CHANGELOG-COPILOT.md` after significant development sessions
    - Include technical details for future reference
 
 ### For Package Maintainers
 
 1. **Never Break the Template**
-   - Keep `COPILOT-CHANGELOG.md` as a generic template
+   - Keep `CHANGELOG-COPILOT.md` as a generic template
    - Don't add project-specific content to the package version
 
 2. **Document Changes**
