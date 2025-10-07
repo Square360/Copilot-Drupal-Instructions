@@ -45,7 +45,7 @@ All instruction files now have clear directives at the top to help Copilot under
    - Code quality checks
    - Pre-commit reminders
 
-8. **`COPILOT-CHANGELOG.md`** ✅
+8. **`CHANGELOG-COPILOT.md`** ✅
    - Empty template for projects to maintain their own history
    - Protected by merge strategy
 
@@ -155,7 +155,7 @@ Copilot-Drupal-Instructions/
 │   ├── instructions.md            ✅ Generic
 │   ├── overview.md                ✅ Context table added
 │   ├── session-checklist.md       ✅ Ready
-│   ├── COPILOT-CHANGELOG.md       ✅ Empty template
+│   ├── CHANGELOG-COPILOT.md       ✅ Empty template
 │   ├── .copilot.local.md.example  ✅ Template
 │   └── PROJECT-README.md          ✅ NEW - Project template
 │

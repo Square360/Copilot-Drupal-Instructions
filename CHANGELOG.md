@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - security-performance.md - Security and performance best practices
   - overview.md - Context-aware assistance documentation
   - session-checklist.md - Development session quality checklist
-  - COPILOT-CHANGELOG.md - Empty template for project-specific changelog
+  - CHANGELOG-COPILOT.md - Empty template for project-specific changelog
 - Composer package configuration for easy installation
 - Git merge strategy documentation for preserving project-specific files
 - MIT License
@@ -38,14 +38,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Updated auto-customization prompt to reference COPILOT-CHANGELOG.md (uppercase) for consistency with other important files like README.md and CHANGELOG.md
-- Clarified package structure: COPILOT-CHANGELOG.md is created by projects during auto-customization, not distributed with the package
-- Updated all documentation references to use uppercase COPILOT-CHANGELOG.md filename
+- Updated auto-customization prompt to reference CHANGELOG-COPILOT.md for consistency with other important files like README.md and CHANGELOG.md
+- Clarified package structure: CHANGELOG-COPILOT.md is created by projects during auto-customization, not distributed with the package
+- Updated all documentation references to use CHANGELOG-COPILOT.md filename
 - Improved composer.json archive exclusions to ensure project-specific files aren't distributed
 
 ### Fixed
 
-- Removed COPILOT-CHANGELOG.md from package repository to maintain clean separation between package template and project-specific files
+- Removed CHANGELOG-COPILOT.md from package repository to maintain clean separation between package template and project-specific files
 - Updated .gitignore to reflect proper file exclusions
 
 ### Planned

@@ -20,7 +20,7 @@ phpunit.xml
 
 # Developer-specific Copilot instructions (local only)
 .copilot.local.md
-COPILOT-CHANGELOG.md
+CHANGELOG-COPILOT.md
 
 # Don't ignore these important files
 !.gitattributes

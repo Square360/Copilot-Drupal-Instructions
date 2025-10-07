@@ -46,7 +46,7 @@ composer require square360/copilot-drupal-instructions:^1.0
 git config merge.ours.driver true
 
 # Add to project's .gitattributes
-echo ".github/copilot/COPILOT-CHANGELOG.md merge=ours" >> .gitattributes
+echo ".github/copilot/CHANGELOG-COPILOT.md merge=ours" >> .gitattributes
 ```
 
 ### 4. Customize for Your Project
@@ -62,10 +62,10 @@ Edit `.github/copilot/README.md` and update:
 
 ```bash
 # Backup current project changelog
-cp .github/copilot/COPILOT-CHANGELOG.md /tmp/yh-changelog-backup.md
+cp .github/copilot/CHANGELOG-COPILOT.md /tmp/yh-changelog-backup.md
 
 # After composer install, replace with your version
-cp /tmp/yh-changelog-backup.md .github/copilot/COPILOT-CHANGELOG.md
+cp /tmp/yh-changelog-backup.md .github/copilot/CHANGELOG-COPILOT.md
 ```
 
 ## Testing the Setup
@@ -77,7 +77,7 @@ cp /tmp/yh-changelog-backup.md .github/copilot/COPILOT-CHANGELOG.md
 3. Run `composer update square360/copilot-drupal-instructions`
 4. Verify:
    - Updated files are pulled in
-   - Your project's `COPILOT-CHANGELOG.md` is NOT overwritten
+   - Your project's `CHANGELOG-COPILOT.md` is NOT overwritten
    - Copilot can access the updated instructions
 
 ### Test in Another Project
@@ -98,7 +98,7 @@ temp-copilot-package/
 ├── LICENSE                 # MIT License
 ├── README.md               # Package overview
 ├── composer.json           # Composer configuration
-├── COPILOT-CHANGELOG.md    # Empty template (project-specific)
+├── CHANGELOG-COPILOT.md    # Empty template (project-specific)
 ├── accessibility.md        # WCAG guidelines
 ├── drupal-modules.md       # Module development standards
 ├── instructions.md         # Copilot interaction patterns
