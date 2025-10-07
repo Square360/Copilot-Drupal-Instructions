@@ -120,46 +120,42 @@ See [INSTALL.md](./INSTALL.md) for complete installation instructions.
 
 ### Changelog Gets Overwritten on Updates
 
-**Symptoms:**
-- Your project-specific `copilot-changelog.md` entries are lost after running `composer update`
-- Changes to the changelog don't persist
-
-**Root Cause:**
-This should NOT happen with version 1.1.0+ of the package. The `copilot-changelog.md` file is excluded from the composer package distribution via `export-ignore`, meaning it will only be created on first install and never updated.
-
-**Solution:**
-
-1. **Check your package version:**
-
-```bash
-composer show square360/copilot-drupal-instructions
-```
-
-If you're on an older version, update to the latest:
-
-```bash
-composer update square360/copilot-drupal-instructions
-```
-
-2. **Verify the file is excluded:**
-
-After updating, the `copilot-changelog.md` should not be included in future updates. Your project-specific entries will be preserved automatically.
-
-3. **If you lost changelog entries:**
-
-Check git history to recover them:
-
-```bash
-git log .github/copilot/copilot-changelog.md
-git show <commit-hash>:.github/copilot/copilot-changelog.md > .github/copilot/copilot-changelog.md
-```
+**This should NOT happen** with the current package design.
 
 **How It Works:**
-- The package repository has `copilot-changelog.md` as a template
-- The `.gitattributes` file marks it as `export-ignore`
-- When composer installs the package, this file is NOT included in the distribution
-- On first install, it's created from the repo
-- On updates, composer doesn't have this file to overwrite yours with
+- The `COPILOT-CHANGELOG.md` template is included in the installed README.md file
+- The auto-customization prompt copies this template to `COPILOT-CHANGELOG.md` and customizes it
+- After copying, the template section is removed from README.md
+- Future updates only update instruction files, not the project-specific changelog
+
+**If Your Changelog Is Missing:**
+
+1. **Check if auto-customization was run:**
+
+Look for the "Changelog Template" section in your `.github/copilot/README.md`. If it's there, run the auto-customization prompt:
+
+```
+I just installed the square360/copilot-drupal-instructions package into my Drupal project.
+Please update the files in .github/copilot/ to reflect this project...
+```
+
+2. **Manual recovery:**
+
+If the template section was removed but `COPILOT-CHANGELOG.md` wasn't created, copy the template from the package repository:
+
+```bash
+cd .github/copilot/
+curl -O https://raw.githubusercontent.com/Square360/Copilot-Drupal-Instructions/master/COPILOT-CHANGELOG.md
+```
+
+3. **Recover lost entries from git:**
+
+If you had a changelog that got overwritten:
+
+```bash
+git log .github/copilot/COPILOT-CHANGELOG.md
+git show <commit-hash>:.github/copilot/COPILOT-CHANGELOG.md > .github/copilot/COPILOT-CHANGELOG.md
+```
 
 ---
 

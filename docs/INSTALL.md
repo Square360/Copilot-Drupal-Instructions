@@ -44,10 +44,10 @@ composer require square360/copilot-drupal-instructions
 
 The files will be installed to `.github/copilot/`.
 
-**Note:** The `copilot-changelog.md` and `PROJECT-README.md` template files are excluded from the package distribution (via `export-ignore`). This means:
-- On **first install**: These files will be created from the repository
-- On **updates**: These files will NOT be touched or overwritten
-- Your project-specific customizations are safe during composer updates
+**Note:** The `PROJECT-README.md` template file is excluded from the package distribution (via `export-ignore`). The `COPILOT-CHANGELOG.md` template is included in the installed README.md file and will be copied to a separate file during auto-customization. This ensures:
+- On **first install**: Template is available in README.md
+- During **auto-customization**: Template is copied to `COPILOT-CHANGELOG.md` and removed from README.md
+- On **updates**: Your project-specific changelog is never overwritten
 
 ### 4. Customize for Your Project
 
@@ -120,7 +120,7 @@ Use this for personal coding preferences, testing new patterns, or local environ
 At the end of each coding session, ask GitHub Copilot to:
 
 ```
-Summarize the work completed in this session and add it to .github/copilot/copilot-changelog.md
+Summarize the work completed in this session and add it to .github/copilot/COPILOT-CHANGELOG.md
 ```
 
 This helps your team:
@@ -129,7 +129,7 @@ This helps your team:
 - Maintain a history of development decisions
 - Onboard new developers more effectively
 
-**Note:** The `copilot-changelog.md` file is protected by a merge strategy so your project-specific entries won't be overwritten during package updates.
+**Note:** The `COPILOT-CHANGELOG.md` file is protected by a merge strategy so your project-specific entries won't be overwritten during package updates.
 
 ### 7. Start Using
 
@@ -143,7 +143,7 @@ To get the latest version:
 composer update square360/copilot-drupal-instructions
 ```
 
-Your `copilot-changelog.md` and any customizations will be preserved.
+Your `COPILOT-CHANGELOG.md` and any customizations will be preserved.
 
 ## Troubleshooting
 

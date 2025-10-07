@@ -19,14 +19,17 @@ I've transformed your copilot instruction files into a reusable Composer package
 ### The Git Merge Strategy
 The package includes a `.gitattributes` file that tells git:
 ```
-copilot-changelog.md merge=ours
+```
+COPILOT-CHANGELOG.md merge=ours
+README.md merge=ours
+```
 ```
 
 This means: "During updates, always keep OUR (project's) version of the changelog, ignore THEIR (package's) version."
 
 When you run `composer update square360/copilot-drupal-instructions`:
 - ✅ Updated instruction files → Pulled in
-- ✅ New best practices → Pulled in  
+- ✅ New best practices → Pulled in
 - 🔒 Your changelog → **Protected, never touched**
 
 ## What's in the Package
@@ -42,7 +45,7 @@ When you run `composer update square360/copilot-drupal-instructions`:
 - `session-checklist.md` - QA checklist
 
 ### Protected Files (Never Update)
-- `copilot-changelog.md` - Empty template; each project maintains their own
+- `COPILOT-CHANGELOG.md` - Empty template; each project maintains their own
 
 ### Package Files
 - `composer.json` - Composer configuration
@@ -94,7 +97,7 @@ composer require square360/copilot-drupal-instructions:^1.0
 
 # Configure merge protection
 git config merge.ours.driver true
-echo ".github/copilot/copilot-changelog.md merge=ours" >> .gitattributes
+echo ".github/copilot/COPILOT-CHANGELOG.md merge=ours" >> .gitattributes
 
 # Commit
 git add .
@@ -108,12 +111,12 @@ git commit -m "Add copilot instructions package"
 Open GitHub Copilot Chat and paste this prompt:
 
 ```
-I just installed the square360/copilot-drupal-instructions package. Please update 
-.github/copilot/ files to reflect this project by examining the project 
-structure, composer.json, and existing modules/themes. Update README.md with actual 
-project details (name, URLs, module prefix, custom modules list), and update 
+I just installed the square360/copilot-drupal-instructions package. Please update
+.github/copilot/ files to reflect this project by examining the project
+structure, composer.json, and existing modules/themes. Update README.md with actual
+project details (name, URLs, module prefix, custom modules list), and update
 examples in drupal-modules.md and themes-frontend.md to use the correct naming.
-Keep copilot-changelog.md as-is.
+Keep COPILOT-CHANGELOG.md as-is.
 ```
 
 Copilot will analyze your project and update all the files automatically! Review and commit the changes.
@@ -123,10 +126,10 @@ Copilot will analyze your project and update all the files automatically! Review
 ```bash
 # Your current changelog has project-specific history
 # Make sure to keep it!
-cp .github/copilot/copilot-changelog.md ~/yh-changelog-backup.md
+cp .github/copilot/COPILOT-CHANGELOG.md ~/yh-changelog-backup.md
 
 # After composer install, restore it
-cp ~/yh-changelog-backup.md .github/copilot/copilot-changelog.md
+cp ~/yh-changelog-backup.md .github/copilot/COPILOT-CHANGELOG.md
 ```
 
 ## Testing the Setup
@@ -154,7 +157,7 @@ composer update square360/copilot-drupal-instructions
 
 **Customize:**
 - Edit README.md for project specifics
-- Maintain your own copilot-changelog.md
+- Maintain your own COPILOT-CHANGELOG.md
 
 ### For Package Maintenance
 
@@ -223,6 +226,6 @@ This approach:
 
 **Ready to publish!** Follow NEXT-STEPS.md to create the GitHub repo and start using it in your projects.
 
-**Created:** October 5, 2025  
-**Version:** 1.0.0  
+**Created:** October 5, 2025
+**Version:** 1.0.0
 **Status:** Complete and tested structure
