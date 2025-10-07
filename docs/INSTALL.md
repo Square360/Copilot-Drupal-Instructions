@@ -120,7 +120,7 @@ Use this for personal coding preferences, testing new patterns, or local environ
 At the end of each coding session, ask GitHub Copilot to:
 
 ```
-Summarize the work completed in this session and add it to .github/copilot/CHANGELOG-COPILOT.md
+Summarize the work completed in this session and add it to CHANGELOG-COPILOT.md
 ```
 
 This helps your team:

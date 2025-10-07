@@ -66,7 +66,7 @@ cd /path/to/your/drupal-project
 composer config repositories.copilot-instructions vcs https://github.com/Square360/Copilot-Drupal-Instructions
 composer require square360/copilot-drupal-instructions:^1.0
 git config merge.ours.driver true
-echo ".github/copilot/CHANGELOG-COPILOT.md merge=ours" >> .gitattributes
+echo "CHANGELOG-COPILOT.md merge=ours" >> .gitattributes
 ```
 
 ### 3. Customize for Your Project
@@ -78,9 +78,9 @@ Edit `.github/copilot/README.md` with:
 
 ### 4. Preserve Your Changelog
 ```bash
-cp .github/copilot/CHANGELOG-COPILOT.md /tmp/project-changelog.md
+cp CHANGELOG-COPILOT.md /tmp/project-changelog.md
 composer update square360/copilot-drupal-instructions
-cp /tmp/project-changelog.md .github/copilot/CHANGELOG-COPILOT.md
+cp /tmp/project-changelog.md CHANGELOG-COPILOT.md
 ```
 
 ## 📋 What Happens When Projects Update

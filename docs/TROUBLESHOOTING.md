@@ -153,8 +153,8 @@ curl -O https://raw.githubusercontent.com/Square360/Copilot-Drupal-Instructions/
 If you had a changelog that got overwritten:
 
 ```bash
-git log .github/copilot/CHANGELOG-COPILOT.md
-git show <commit-hash>:.github/copilot/CHANGELOG-COPILOT.md > .github/copilot/CHANGELOG-COPILOT.md
+git log CHANGELOG-COPILOT.md
+git show <commit-hash>:CHANGELOG-COPILOT.md > CHANGELOG-COPILOT.md
 ```
 
 ---

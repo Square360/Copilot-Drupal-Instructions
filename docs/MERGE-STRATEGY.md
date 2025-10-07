@@ -25,7 +25,7 @@ This installs the package files to `.github/copilot/` including template files l
 
 ### Step 2: Customize Your Project
 
-You edit `.github/copilot/CHANGELOG-COPILOT.md` to add your project's development history and customize other files for your project.
+You edit `CHANGELOG-COPILOT.md` to add your project's development history and customize other files for your project.
 
 ### Step 3: Package Updates
 
@@ -83,11 +83,11 @@ This tells composer: "When creating the package distribution, don't include thes
 composer require square360/copilot-drupal-instructions
 
 # Add content to changelog
-echo "## [2025-10-05] - My first entry" >> .github/copilot/CHANGELOG-COPILOT.md
+echo "## [2025-10-05] - My first entry" >> CHANGELOG-COPILOT.md
 
 # Configure merge strategy
 git config merge.ours.driver true
-echo ".github/copilot/CHANGELOG-COPILOT.md merge=ours" >> .gitattributes
+echo "CHANGELOG-COPILOT.md merge=ours" >> .gitattributes
 
 # Commit
 git add .
@@ -100,7 +100,7 @@ git commit -m "Add copilot instructions with custom changelog"
 composer update square360/copilot-drupal-instructions
 
 # Check your changelog
-cat .github/copilot/CHANGELOG-COPILOT.md
+cat CHANGELOG-COPILOT.md
 # Should still contain "My first entry"!
 ```
 
@@ -123,8 +123,8 @@ composer update square360/copilot-drupal-instructions
 **Recover lost entries:**
 If you lost changelog entries, check git history:
 ```bash
-git log .github/copilot/CHANGELOG-COPILOT.md
-git show <commit-hash>:.github/copilot/CHANGELOG-COPILOT.md
+git log CHANGELOG-COPILOT.md
+git show <commit-hash>:CHANGELOG-COPILOT.md
 ```
 
 ### Problem: Template Files Missing on First Install

@@ -1,8 +1,8 @@
 # GitHub Copilot Interaction Instructions
 
-> **For GitHub Copilot:** At the END of every development session, you MUST proactively ask: "Should I summarize the completed work and update the changelog?" Then add a comprehensive summary to `.github/copilot/CHANGELOG-COPILOT.md`. This is not optional - it's a required workflow step.
+> **For GitHub Copilot:** At the END of every development session, you MUST proactively ask: "Should I summarize the completed work and update the changelog?" Then add a comprehensive summary to the project root file `CHANGELOG-COPILOT.md` (located at `./CHANGELOG-COPILOT.md`). This is not optional - it's a required workflow step.
 
-> **For Developers:** Always end sessions by asking: "Summarize the work completed in this session and add it to .github/copilot/CHANGELOG-COPILOT.md"
+> **For Developers:** Always end sessions by asking: "Summarize the work completed in this session and add it to the project root file CHANGELOG-COPILOT.md"
 
 ## General Development Guidance
 
@@ -72,7 +72,7 @@ This file contains best practices and interaction patterns for working with GitH
 ## Common shortcuts and commands
 
 ### Shortcuts
- - When I say "Add to changelog", add a detailed entry to `.github/copilot/CHANGELOG-COPILOT.md` summarizing the work done in this session.
+ - When I say "Add to changelog", add a detailed entry to the project root file `CHANGELOG-COPILOT.md` (located at `./CHANGELOG-COPILOT.md`) summarizing the work done in this session.
  - When I say "Run code sniff", execute `lando composer code-sniff` and report any issues found.
  - When I say "terminal done", it means "the terminal command has completed successfully, please continue".
 

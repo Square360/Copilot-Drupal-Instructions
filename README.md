@@ -32,7 +32,7 @@ the generic examples. Specifically:
    - Note the actual development environment (Lando/DDEV/other)
    - Note the hosting platform (Pantheon/Aquia/other)
 
-2. Copy the "Changelog Template" section from README.md to a new file CHANGELOG-COPILOT.md,
+2. Copy the "Changelog Template" section from README.md to a new file CHANGELOG-COPILOT.md at the project root (./CHANGELOG-COPILOT.md),
    replacing [Project Name] with the actual project name.
 
 3. When done remove the ## Installation, ## Auto-Customization with Copilot,
