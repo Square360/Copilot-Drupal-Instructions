@@ -1,6 +1,6 @@
 # Next Steps for Publishing the Copilot Instructions Package
 
-## Package is Ready! 
+## Package is Ready!
 
 The files in `/temp-copilot-package/` are now configured as a reusable Composer package.
 
@@ -46,7 +46,7 @@ composer require square360/copilot-drupal-instructions:^1.0
 git config merge.ours.driver true
 
 # Add to project's .gitattributes
-echo ".github/copilot/CHANGELOG-COPILOT.md merge=ours" >> .gitattributes
+echo "CHANGELOG-COPILOT.md merge=ours" >> .gitattributes
 ```
 
 ### 4. Customize for Your Project
@@ -62,10 +62,10 @@ Edit `.github/copilot/README.md` and update:
 
 ```bash
 # Backup current project changelog
-cp .github/copilot/CHANGELOG-COPILOT.md /tmp/yh-changelog-backup.md
+cp CHANGELOG-COPILOT.md /tmp/yh-changelog-backup.md
 
 # After composer install, replace with your version
-cp /tmp/yh-changelog-backup.md .github/copilot/CHANGELOG-COPILOT.md
+cp /tmp/yh-changelog-backup.md CHANGELOG-COPILOT.md
 ```
 
 ## Testing the Setup

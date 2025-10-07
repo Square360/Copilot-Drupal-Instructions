@@ -97,7 +97,7 @@ composer require square360/copilot-drupal-instructions:^1.0
 
 # Configure merge protection
 git config merge.ours.driver true
-echo ".github/copilot/CHANGELOG-COPILOT.md merge=ours" >> .gitattributes
+echo "CHANGELOG-COPILOT.md merge=ours" >> .gitattributes
 
 # Commit
 git add .
@@ -126,10 +126,10 @@ Copilot will analyze your project and update all the files automatically! Review
 ```bash
 # Your current changelog has project-specific history
 # Make sure to keep it!
-cp .github/copilot/CHANGELOG-COPILOT.md ~/yh-changelog-backup.md
+cp CHANGELOG-COPILOT.md ~/yh-changelog-backup.md
 
 # After composer install, restore it
-cp ~/yh-changelog-backup.md .github/copilot/CHANGELOG-COPILOT.md
+cp ~/yh-changelog-backup.md CHANGELOG-COPILOT.md
 ```
 
 ## Testing the Setup
