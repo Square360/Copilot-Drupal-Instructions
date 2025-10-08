@@ -1,7 +1,7 @@
 {
   "name": "square360/copilot-drupal-instructions",
   "description": "Reusable GitHub Copilot instruction files for Drupal projects",
-  "type": "drupal-library",
+  "type": "library",
   "license": "MIT",
   "keywords": [
     "drupal",
@@ -17,10 +17,25 @@
     }
   ],
   "require": {
-    "composer/installers": "^1.0 || ^2.0"
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "classmap": [
+      "copilot-configuration/scripts/ComposerScripts.php"
+    ]
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "CopilotDrupalInstructions\\ComposerScripts::postInstall"
+    ],
+    "post-update-cmd": [
+      "CopilotDrupalInstructions\\ComposerScripts::postUpdate"
+    ]
   },
   "extra": {
-    "installer-name": "copilot"
+    "branch-alias": {
+      "dev-master": "1.x-dev"
+    }
   },
   "archive": {
     "exclude": [
