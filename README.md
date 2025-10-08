@@ -92,7 +92,7 @@ cp copilot.local.md.example copilot.local.md
 # Edit copilot.local.md with your personal preferences
 ```
 
-> **Note**: The package automatically ensures `copilot.local.md` is added to your project's `.gitignore` during installation, so your personal instructions will remain private.
+> **Note**: The package automatically ensures `copilot.local.md` is added to your project's `.gitignore` during installation (both in `.github/copilot/` and at project root), so your personal instructions will remain private.
 
 **Use cases:**
 - Test new instruction patterns before proposing to the team

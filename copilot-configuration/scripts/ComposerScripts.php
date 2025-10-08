@@ -198,7 +198,7 @@ class ComposerScripts {
     $io->write("   3. Run the auto-customization prompt from README.md to customize for your project");
     $io->write("   4. Optional: Copy .github/copilot/copilot.local.md.example to");
     $io->write("      .github/copilot/copilot.local.md for personal instructions");
-    $io->write("      (Your .gitignore has been updated to keep personal files private)\n");
+    $io->write("      (Both .github/copilot/ and project root locations are now git-ignored)\n");
     $io->write("<info>🔗 Documentation: vendor/square360/copilot-drupal-instructions/README.md</info>\n");
   }
 
@@ -207,6 +207,7 @@ class ComposerScripts {
    *
    * Checks if the project's .gitignore file includes the copilot.local.md entry
    * and adds it if not present. This ensures personal instructions stay local.
+   * Covers both .github/copilot/ and project root locations.
    *
    * @param string $projectRoot
    *   The absolute path to the project root directory.
@@ -215,58 +216,109 @@ class ComposerScripts {
    */
   private static function ensureGitignoreEntry($projectRoot, $io) {
     $gitignorePath = $projectRoot . '/.gitignore';
-    $gitignoreEntry = '.github/copilot/copilot.local.md';
+    $gitignoreEntries = [
+      '.github/copilot/copilot.local.md',
+      'copilot.local.md'
+    ];
 
     // Check if .gitignore exists
     if (!file_exists($gitignorePath)) {
       $io->write("   <comment>⚠️  No .gitignore file found at project root</comment>");
-      $io->write("   <info>💡 Consider creating a .gitignore with: $gitignoreEntry</info>");
+      $io->write("   <info>💡 Consider creating a .gitignore with entries for both locations:</info>");
+      foreach ($gitignoreEntries as $entry) {
+        $io->write("      $entry");
+      }
       return;
     }
 
     // Read current .gitignore contents
     $gitignoreContents = file_get_contents($gitignorePath);
 
-    // Check for various possible formats of the entry
-    $patterns = [
+    // Split into lines for precise matching
+    $gitignoreLines = array_map('trim', explode("\n", $gitignoreContents));
+
+    // Check for various possible formats that would cover our entries
+    $copilotFolderPatterns = [
       '.github/copilot/copilot.local.md',
       '/.github/copilot/copilot.local.md',
       '.github/copilot/*.local.md',
       '/.github/copilot/*.local.md',
+    ];
+
+    $projectRootPatterns = [
       'copilot.local.md',
+      '/copilot.local.md',
+    ];
+
+    $globalPatterns = [
       '*.local.md',
     ];
 
-    $entryExists = false;
-    $foundPattern = '';
+    $foundPatterns = [];
 
-    foreach ($patterns as $pattern) {
-      if (strpos($gitignoreContents, $pattern) !== false) {
-        $entryExists = true;
-        $foundPattern = $pattern;
-        break;
+    // Check which patterns already exist (exact line matches)
+    foreach (array_merge($copilotFolderPatterns, $projectRootPatterns, $globalPatterns) as $pattern) {
+      if (in_array($pattern, $gitignoreLines)) {
+        $foundPatterns[] = $pattern;
       }
     }
 
-    if ($entryExists) {
-      $io->write("   <info>✅ .gitignore already contains entry: $foundPattern</info>");
+    // Determine if we need to add specific entries
+    $needsCopilotFolder = true;
+    $needsProjectRoot = true;
+
+    foreach ($foundPatterns as $pattern) {
+      // Global patterns cover everything
+      if (in_array($pattern, $globalPatterns)) {
+        $needsCopilotFolder = false;
+        $needsProjectRoot = false;
+        break;
+      }
+      // Check copilot folder coverage
+      if (in_array($pattern, $copilotFolderPatterns)) {
+        $needsCopilotFolder = false;
+      }
+      // Check project root coverage
+      if (in_array($pattern, $projectRootPatterns)) {
+        $needsProjectRoot = false;
+      }
+    }
+
+    // Build list of entries to add
+    $missingEntries = [];
+    if ($needsCopilotFolder) {
+      $missingEntries[] = '.github/copilot/copilot.local.md';
+    }
+    if ($needsProjectRoot) {
+      $missingEntries[] = 'copilot.local.md';
+    }
+
+    // Report existing coverage
+    if (!empty($foundPatterns)) {
+      $io->write("   <info>✅ .gitignore already contains: " . implode(', ', $foundPatterns) . "</info>");
+    }
+
+    // Add missing entries if needed
+    if (empty($missingEntries)) {
+      $io->write("   <info>✅ All copilot.local.md locations already covered</info>");
       return;
     }
 
-    // Add the entry to .gitignore
-    $newEntry = "\n# Copilot personal instructions (local only)\n$gitignoreEntry\n";
+    // Add the missing entries to .gitignore
+    $newEntries = "\n# Copilot personal instructions (local only)\n" . implode("\n", $missingEntries) . "\n";
 
     // Append to .gitignore
-    if (file_put_contents($gitignorePath, $gitignoreContents . $newEntry, LOCK_EX)) {
-      $io->write("   <info>✅ Added $gitignoreEntry to .gitignore</info>");
-      $io->write("   <info>💡 Your personal copilot.local.md will now be git-ignored</info>");
+    if (file_put_contents($gitignorePath, $gitignoreContents . $newEntries, LOCK_EX)) {
+      $io->write("   <info>✅ Added to .gitignore: " . implode(', ', $missingEntries) . "</info>");
+      $io->write("   <info>💡 Your personal copilot.local.md files will now be git-ignored</info>");
     } else {
       $io->writeError("   <error>❌ Failed to update .gitignore file</error>");
-      $io->write("   <info>💡 Please manually add: $gitignoreEntry</info>");
+      $io->write("   <info>💡 Please manually add:</info>");
+      foreach ($missingEntries as $entry) {
+        $io->write("      $entry");
+      }
     }
-  }
-
-  /**
+  }  /**
    * Get the default changelog template content.
    *
    * Used as a fallback if the template file is missing.
