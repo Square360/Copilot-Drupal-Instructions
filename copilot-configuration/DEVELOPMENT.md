@@ -9,8 +9,8 @@ This package provides standardized GitHub Copilot instruction files for **Drupal
 - **Drupal Version**: 10/11
 - **PHP Version**: 8.2+ (minimum)
 - **Hosting**: Pantheon exclusively
-- **Package Type**: Composer library
-- **Installation Method**: Composer with automated file copying
+- **Package Type**: Composer plugin
+- **Installation Method**: Composer plugin with automated file copying
 
 **Important**: We do NOT support other hosting platforms or PHP versions below 8.2. All development decisions should assume Pantheon hosting and PHP 8.2+.
 
@@ -18,13 +18,19 @@ This package provides standardized GitHub Copilot instruction files for **Drupal
 
 ### Design Philosophy
 
-This package uses a **hybrid approach** inspired by [Pantheon's drupal-composer-managed upstream](https://github.com/pantheon-upstreams/drupal-composer-managed), specifically their `upstream-configuration/` pattern.
+This package uses a **Composer plugin approach** with patterns inspired by [Pantheon's drupal-composer-managed upstream](https://github.com/pantheon-upstreams/drupal-composer-managed), specifically their `upstream-configuration/` pattern.
 
 **Key Reference**: Study `https://github.com/pantheon-upstreams/drupal-composer-managed` for patterns, especially:
 - `upstream-configuration/scripts/ComposerScripts.php` - Our model for composer automation
 - `upstream-configuration/README.md` - Pattern for organizing upstream code
-- Composer autoload with classmap approach
+- Composer plugin approach for automatic execution
 - Pre/post update hooks
+
+### Why Composer Plugin?
+
+**Problem Solved**: When you `composer require` a package, Composer **does NOT** run scripts defined in the package's `composer.json` - it only runs scripts defined in the target project's `composer.json`. This meant our scripts never executed.
+
+**Solution**: Composer plugins can subscribe to events and run automatically when the package is installed or updated, regardless of the target project's configuration.
 
 ### What We Adopted from Pantheon
 
@@ -34,11 +40,11 @@ This package uses a **hybrid approach** inspired by [Pantheon's drupal-composer-
 - Clear README explaining architecture
 
 ✅ **Technical Patterns**
-- Namespaced PHP class: `CopilotDrupalInstructions\ComposerScripts`
-- Classmap autoloading in `composer.json`
-- Composer Event hooks (`postInstall`, `postUpdate`)
+- Namespaced PHP classes: `CopilotDrupalInstructions\ComposerPlugin` and `ComposerScripts`
+- PSR-4 autoloading for better organization
+- Composer Event hooks (POST_INSTALL_CMD, POST_UPDATE_CMD)
 - Professional use of Composer IO for output
-- `jsonEncodePretty()` method for future JSON formatting needs
+- File existence checks and protection patterns
 
 ✅ **Best Practices**
 - File existence checks before copying
