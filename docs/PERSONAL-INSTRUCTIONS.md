@@ -2,13 +2,13 @@
 
 ## Overview
 
-This package now supports personal, developer-specific Copilot instructions through `.copilot.local.md` files.
+This package now supports personal, developer-specific Copilot instructions through `copilot.local.md` files.
 
 ## How It Works
 
-1. **Template Provided**: `.copilot.local.md.example` is included in the package
-2. **Developer Creates Local File**: Each developer copies the template to `.copilot.local.md`
-3. **Git Ignores Local File**: The `.copilot.local.md` file is never committed
+1. **Template Provided**: `copilot.local.md.example` is included in the package
+2. **Developer Creates Local File**: Each developer copies the template to `copilot.local.md`
+3. **Git Ignores Local File**: The `copilot.local.md` file is never committed
 4. **Copilot Reads Both**: GitHub Copilot automatically references both team instructions and personal instructions
 
 ## Setup
@@ -17,8 +17,8 @@ After installing the package in a project:
 
 ```bash
 cd .github/copilot/
-cp .copilot.local.md.example .copilot.local.md
-# Edit .copilot.local.md with personal preferences
+cp copilot.local.md.example copilot.local.md
+# Edit copilot.local.md with personal preferences
 ```
 
 ## Use Cases
@@ -89,22 +89,22 @@ Working on: Migration module
 ## File Locations
 
 ### In This Package (Copilot-Drupal-Instructions repo)
-- `.copilot.local.md.example` - Template file (included)
-- `.gitignore` - Excludes `.copilot.local.md`
+- `copilot.local.md.example` - Template file (included)
+- `.gitignore` - Excludes `copilot.local.md`
 
 ### In Installed Projects
-- `.github/copilot/.copilot.local.md.example` - Installed template
-- `.github/copilot/.copilot.local.md` - Your personal file (git-ignored)
+- `.github/copilot/copilot.local.md.example` - Installed template
+- `.github/copilot/copilot.local.md` - Your personal file (git-ignored)
 
 ## Technical Details
 
-- The `.copilot.local.md` file is added to the root `.gitignore` in this package
+- The `copilot.local.md` file is added to the root `.gitignore` in this package
 - The example template is distributed with the package
-- Each project needs to add `.github/copilot/.copilot.local.md` to their `.gitignore`
+- Each project needs to add `.github/copilot/copilot.local.md` to their `.gitignore`
 - GitHub Copilot automatically reads all `.md` files in `.github/copilot/`
 
 ## Documentation
 
 - Main README includes section on Personal Developer Instructions
 - `overview.md` mentions the capability
-- `.copilot.local.md.example` has extensive inline documentation and examples
+- `copilot.local.md.example` has extensive inline documentation and examples

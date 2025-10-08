@@ -43,7 +43,7 @@ class ComposerScripts {
    * - Copies instruction files to .github/copilot/
    * - Only copies files that don't exist (protects customizations)
    * - Creates CHANGELOG-COPILOT.md from template if it doesn't exist
-   * - Creates .copilot.local.md.example if needed
+   * - Creates copilot.local.md.example if needed
    *
    * @param \Composer\Script\Event $event
    *   The Composer event object.
@@ -52,11 +52,11 @@ class ComposerScripts {
     $io = $event->getIO();
     $composer = $event->getComposer();
     $config = $composer->getConfig();
-    
+
     // Debug output
     $io->write("\n<info>🚀 Installing Copilot Drupal Instructions...</info>");
     $io->write("<info>🔍 DEBUG: ComposerScripts::installFiles() called</info>");
-    
+
     // Determine paths
     $vendorDir = $config->get('vendor-dir');
     $packageDir = $vendorDir . '/square360/copilot-drupal-instructions';
@@ -66,7 +66,7 @@ class ComposerScripts {
     $io->write("<info>� DEBUG: Vendor dir: $vendorDir</info>");
     $io->write("<info>🔍 DEBUG: Package dir: $packageDir</info>");
     $io->write("<info>🔍 DEBUG: Project root: $projectRoot</info>");
-    
+
     // Check if package directory exists
     if (!is_dir($packageDir)) {
       $io->writeError("<error>❌ Package directory not found: $packageDir</error>");
@@ -78,7 +78,7 @@ class ComposerScripts {
     // Ensure .github/copilot directory exists
     $copilotDir = $projectRoot . '/.github/copilot';
     $io->write("<info>🔍 DEBUG: Target copilot dir: $copilotDir</info>");
-    
+
     if (!is_dir($copilotDir)) {
       $io->write("<info>📁 Creating .github/copilot directory...</info>");
       if (mkdir($copilotDir, 0755, true)) {
@@ -137,20 +137,20 @@ class ComposerScripts {
       $io->writeError("   <error>⚠️  Warning: PROJECT-README.md not found in package directory</error>");
     }
 
-    // Copy .copilot.local.md.example to .github/copilot/ if it doesn't exist
+    // Copy copilot.local.md.example to .github/copilot/ if it doesn't exist
     $io->write("\n<info>📋 Setting up local example...</info>");
-    $exampleSource = $packageDir . '/.copilot.local.md.example';
-    $exampleDest = $copilotDir . '/.copilot.local.md.example';
+    $exampleSource = $packageDir . '/copilot.local.md.example';
+    $exampleDest = $copilotDir . '/copilot.local.md.example';
 
     if (!file_exists($exampleDest) && file_exists($exampleSource)) {
       copy($exampleSource, $exampleDest);
-      $io->write("   <info>✅ Copied .copilot.local.md.example to .github/copilot/</info>");
+      $io->write("   <info>✅ Copied copilot.local.md.example to .github/copilot/</info>");
       $copiedCount++;
     } elseif (file_exists($exampleDest)) {
-      $io->write("   <comment>⏭️  Skipped .copilot.local.md.example (already exists)</comment>");
+      $io->write("   <comment>⏭️  Skipped copilot.local.md.example (already exists)</comment>");
       $skippedCount++;
     } else {
-      $io->writeError("   <error>⚠️  Warning: .copilot.local.md.example not found in package directory</error>");
+      $io->writeError("   <error>⚠️  Warning: copilot.local.md.example not found in package directory</error>");
     }
 
     // Create CHANGELOG-COPILOT.md from template if it doesn't exist
@@ -176,6 +176,10 @@ class ComposerScripts {
       $skippedCount++;
     }
 
+    // Ensure .gitignore includes copilot.local.md
+    $io->write("\n<info>🔍 Checking .gitignore...</info>");
+    static::ensureGitignoreEntry($projectRoot, $io);
+
     // Summary
     $io->write("\n" . str_repeat("=", 70));
     $io->write("<info>✨ Copilot instructions installation complete!</info>");
@@ -192,9 +196,74 @@ class ComposerScripts {
     $io->write("   1. Review files in .github/copilot/");
     $io->write("   2. Customize CHANGELOG-COPILOT.md at project root with your project name");
     $io->write("   3. Run the auto-customization prompt from README.md to customize for your project");
-    $io->write("   4. Optional: Copy .github/copilot/.copilot.local.md.example to");
-    $io->write("      .github/copilot/.copilot.local.md for personal instructions\n");
+    $io->write("   4. Optional: Copy .github/copilot/copilot.local.md.example to");
+    $io->write("      .github/copilot/copilot.local.md for personal instructions");
+    $io->write("      (Your .gitignore has been updated to keep personal files private)\n");
     $io->write("<info>🔗 Documentation: vendor/square360/copilot-drupal-instructions/README.md</info>\n");
+  }
+
+  /**
+   * Ensure .gitignore contains copilot.local.md entry.
+   *
+   * Checks if the project's .gitignore file includes the copilot.local.md entry
+   * and adds it if not present. This ensures personal instructions stay local.
+   *
+   * @param string $projectRoot
+   *   The absolute path to the project root directory.
+   * @param \Composer\IO\IOInterface $io
+   *   The Composer IO interface for output.
+   */
+  private static function ensureGitignoreEntry($projectRoot, $io) {
+    $gitignorePath = $projectRoot . '/.gitignore';
+    $gitignoreEntry = '.github/copilot/copilot.local.md';
+
+    // Check if .gitignore exists
+    if (!file_exists($gitignorePath)) {
+      $io->write("   <comment>⚠️  No .gitignore file found at project root</comment>");
+      $io->write("   <info>💡 Consider creating a .gitignore with: $gitignoreEntry</info>");
+      return;
+    }
+
+    // Read current .gitignore contents
+    $gitignoreContents = file_get_contents($gitignorePath);
+
+    // Check for various possible formats of the entry
+    $patterns = [
+      '.github/copilot/copilot.local.md',
+      '/.github/copilot/copilot.local.md',
+      '.github/copilot/*.local.md',
+      '/.github/copilot/*.local.md',
+      'copilot.local.md',
+      '*.local.md',
+    ];
+
+    $entryExists = false;
+    $foundPattern = '';
+
+    foreach ($patterns as $pattern) {
+      if (strpos($gitignoreContents, $pattern) !== false) {
+        $entryExists = true;
+        $foundPattern = $pattern;
+        break;
+      }
+    }
+
+    if ($entryExists) {
+      $io->write("   <info>✅ .gitignore already contains entry: $foundPattern</info>");
+      return;
+    }
+
+    // Add the entry to .gitignore
+    $newEntry = "\n# Copilot personal instructions (local only)\n$gitignoreEntry\n";
+
+    // Append to .gitignore
+    if (file_put_contents($gitignorePath, $gitignoreContents . $newEntry, LOCK_EX)) {
+      $io->write("   <info>✅ Added $gitignoreEntry to .gitignore</info>");
+      $io->write("   <info>💡 Your personal copilot.local.md will now be git-ignored</info>");
+    } else {
+      $io->writeError("   <error>❌ Failed to update .gitignore file</error>");
+      $io->write("   <info>💡 Please manually add: $gitignoreEntry</info>");
+    }
   }
 
   /**

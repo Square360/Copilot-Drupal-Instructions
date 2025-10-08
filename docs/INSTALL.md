@@ -42,7 +42,10 @@ Add this specific installer path to your project's `composer.json` in the `extra
 composer require square360/copilot-drupal-instructions
 ```
 
-The files will be installed to `.github/copilot/`.
+The package will automatically:
+- Install instruction files to `.github/copilot/`
+- Create `CHANGELOG-COPILOT.md` at your project root
+- Add `copilot.local.md` to your project's `.gitignore` (if not already present)
 
 **Note:** The `PROJECT-README.md` template file is excluded from the package distribution (via `export-ignore`). The `CHANGELOG-COPILOT.md` template is included in the installed README.md file and will be copied to a separate file during auto-customization. This ensures:
 - On **first install**: Template is available in README.md
@@ -98,17 +101,17 @@ cp PROJECT-README.md README.md
 
 ### 5. (Optional) Create Personal Developer Instructions
 
-Create a `.copilot.local.md` file for personal, developer-specific instructions that won't be committed:
+Create a `copilot.local.md` file for personal, developer-specific instructions that won't be committed:
 
 ```bash
 cd .github/copilot/
-cp .copilot.local.md.example .copilot.local.md
+cp copilot.local.md.example copilot.local.md
 # Edit with your personal preferences
 ```
 
 Add to your project's `.gitignore`:
 ```
-.github/copilot/.copilot.local.md
+.github/copilot/copilot.local.md
 ```
 
 Use this for personal coding preferences, testing new patterns, or local environment details.

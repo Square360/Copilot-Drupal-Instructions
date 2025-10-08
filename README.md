@@ -83,14 +83,16 @@ After installation, update these sections in your copy:
 
 ## Personal Developer Instructions (Optional)
 
-Create a `.copilot.local.md` file in your project's `.github/copilot/` directory for personal, developer-specific instructions that won't be committed to the repository.
+Create a `copilot.local.md` file in your project's `.github/copilot/` directory for personal, developer-specific instructions that won't be committed to the repository.
 
 **Setup:**
 ```bash
 cd .github/copilot/
-cp .copilot.local.md.example .copilot.local.md
-# Edit .copilot.local.md with your personal preferences
+cp copilot.local.md.example copilot.local.md
+# Edit copilot.local.md with your personal preferences
 ```
+
+> **Note**: The package automatically ensures `copilot.local.md` is added to your project's `.gitignore` during installation, so your personal instructions will remain private.
 
 **Use cases:**
 - Test new instruction patterns before proposing to the team
@@ -99,7 +101,7 @@ cp .copilot.local.md.example .copilot.local.md
 - Create personal shortcuts and aliases
 - Override or supplement team instructions temporarily
 
-The `.copilot.local.md` file is git-ignored by default and provides a safe space for experimentation and personal customization without affecting the team.
+The `copilot.local.md` file is git-ignored by default and provides a safe space for experimentation and personal customization without affecting the team.
 
 ## Project Changelog
 
