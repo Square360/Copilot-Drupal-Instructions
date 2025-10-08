@@ -52,22 +52,44 @@ class ComposerScripts {
     $io = $event->getIO();
     $composer = $event->getComposer();
     $config = $composer->getConfig();
-
+    
+    // Debug output
+    $io->write("\n<info>🚀 Installing Copilot Drupal Instructions...</info>");
+    $io->write("<info>🔍 DEBUG: ComposerScripts::installFiles() called</info>");
+    
     // Determine paths
     $vendorDir = $config->get('vendor-dir');
     $packageDir = $vendorDir . '/square360/copilot-drupal-instructions';
     $projectRoot = dirname($vendorDir);
 
-    $io->write("\n<info>🚀 Installing Copilot Drupal Instructions...</info>\n");
+    // Debug paths
+    $io->write("<info>� DEBUG: Vendor dir: $vendorDir</info>");
+    $io->write("<info>🔍 DEBUG: Package dir: $packageDir</info>");
+    $io->write("<info>🔍 DEBUG: Project root: $projectRoot</info>");
+    
+    // Check if package directory exists
+    if (!is_dir($packageDir)) {
+      $io->writeError("<error>❌ Package directory not found: $packageDir</error>");
+      return;
+    } else {
+      $io->write("<info>✅ Package directory found: $packageDir</info>");
+    }
 
     // Ensure .github/copilot directory exists
     $copilotDir = $projectRoot . '/.github/copilot';
+    $io->write("<info>🔍 DEBUG: Target copilot dir: $copilotDir</info>");
+    
     if (!is_dir($copilotDir)) {
-      mkdir($copilotDir, 0755, true);
-      $io->write("<info>✅ Created .github/copilot directory</info>");
-    }
-
-    // Files to copy to .github/copilot/ (only if they don't exist)
+      $io->write("<info>📁 Creating .github/copilot directory...</info>");
+      if (mkdir($copilotDir, 0755, true)) {
+        $io->write("<info>✅ Created .github/copilot directory</info>");
+      } else {
+        $io->writeError("<error>❌ Failed to create .github/copilot directory</error>");
+        return;
+      }
+    } else {
+      $io->write("<info>📁 .github/copilot directory already exists</info>");
+    }    // Files to copy to .github/copilot/ (only if they don't exist)
     $instructionFiles = [
       'overview.md',
       'instructions.md',

@@ -13,7 +13,7 @@ This package provides standardized GitHub Copilot instruction files for **Drupal
 
 ## Installation
 
-The package installs to your `vendor/` directory and uses Composer hooks to automatically set up instruction files.
+The package installs as a Composer plugin and automatically sets up instruction files when you require it.
 
 **Install the package:**
 ```bash
@@ -22,13 +22,14 @@ composer require square360/copilot-drupal-instructions
 
 **What happens during installation:**
 - Package installs to `vendor/square360/copilot-drupal-instructions/`
-- Composer autoloads the `CopilotDrupalInstructions\ComposerScripts` class
-- Post-install hook automatically copies instruction files to `.github/copilot/`
+- Composer loads the plugin automatically
+- Plugin subscribes to post-install and post-update events
+- Instruction files are automatically copied to `.github/copilot/`
 - `CHANGELOG-COPILOT.md` is created at project root (if it doesn't exist)
 - Existing files are never overwritten (your customizations are protected)
 - Updates only copy new or missing files
 
-**Architecture:** This package uses a hybrid approach inspired by [Pantheon's upstream-configuration pattern](https://github.com/pantheon-upstreams/drupal-composer-managed), with organized structure but lighter-touch automation appropriate for a documentation package. See `copilot-configuration/README.md` for technical details.
+**Architecture:** This package uses a Composer plugin approach to ensure scripts run automatically when the package is installed. Inspired by [Pantheon's upstream-configuration pattern](https://github.com/pantheon-upstreams/drupal-composer-managed), but implemented as a plugin for reliable automation. See `copilot-configuration/README.md` for technical details.
 
 See [Installation Guide](https://github.com/Square360/Copilot-Drupal-Instructions/blob/master/docs/INSTALL.md) for detailed documentation.
 
