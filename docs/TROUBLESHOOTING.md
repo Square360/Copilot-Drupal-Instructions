@@ -206,22 +206,22 @@ This package is required for custom installation paths to work.
 ### Personal Instructions Not Working
 
 **Symptoms:**
-- `.copilot.local.md` file is being committed to git
+- `copilot.local.md` file is being committed to git
 - Personal instructions are visible to the team
 - File changes are tracked by git
 
 **Solution:**
 
-1. Ensure `.copilot.local.md` is in your project's `.gitignore`:
+1. Ensure `copilot.local.md` is in your project's `.gitignore`:
 
 ```bash
-echo ".github/copilot/.copilot.local.md" >> .gitignore
+echo ".github/copilot/copilot.local.md" >> .gitignore
 ```
 
 2. If already committed, remove from git (but keep local copy):
 
 ```bash
-git rm --cached .github/copilot/.copilot.local.md
+git rm --cached .github/copilot/copilot.local.md
 git commit -m "Remove personal Copilot instructions from tracking"
 ```
 

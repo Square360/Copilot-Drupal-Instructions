@@ -1,7 +1,7 @@
 # Local Developer-Specific Copilot Instructions
 
-> **Note:** This is a template file. Copy it to `.copilot.local.md` to use it.
-> Your `.copilot.local.md` file is git-ignored and won't be committed to the repository.
+> **Note:** This is a template file. Copy it to `copilot.local.md` to use it.
+> Your `copilot.local.md` file is git-ignored and won't be committed to the repository.
 
 This file allows you to:
 - Test new instruction patterns before proposing them to the team
@@ -12,10 +12,10 @@ This file allows you to:
 ## Usage
 
 ```bash
-cp .copilot.local.md.example .copilot.local.md
+cp copilot.local.md.example copilot.local.md
 ```
 
-Then edit `.copilot.local.md` with your personal instructions. GitHub Copilot will automatically reference this file when working in this directory.
+Then edit `copilot.local.md` with your personal instructions. GitHub Copilot will automatically reference this file when working in this directory.
 
 ---
 

@@ -49,7 +49,7 @@ All instruction files now have clear directives at the top to help Copilot under
    - Empty template for projects to maintain their own history
    - Protected by merge strategy
 
-9. **`.copilot.local.md.example`** ✅
+9. **`copilot.local.md.example`** ✅
    - Template for personal developer instructions
    - Comprehensive examples
    - Git-ignored for privacy
@@ -105,7 +105,7 @@ All documentation files cleaned of project-specific references:
    - How to improve the package
 
 8. **`docs/PERSONAL-INSTRUCTIONS.md`** ✅ NEW
-   - Complete documentation of `.copilot.local.md` feature
+   - Complete documentation of `copilot.local.md` feature
    - Use cases and examples
    - Benefits and workflow
 
@@ -140,7 +140,7 @@ All documentation files cleaned of project-specific references:
 - **No Project-Specific Names**: Removed all yh_, nj211_, Yale Health references
 - **Clear Templates**: PROJECT-README.md provides complete project setup template
 - **Better Organization**: Docs separated from instruction files
-- **Personal Instructions**: `.copilot.local.md` feature for individual customization
+- **Personal Instructions**: `copilot.local.md` feature for individual customization
 - **Installation Guide**: Clear step-by-step process with troubleshooting
 
 ## 📊 File Structure
@@ -156,7 +156,7 @@ Copilot-Drupal-Instructions/
 │   ├── overview.md                ✅ Context table added
 │   ├── session-checklist.md       ✅ Ready
 │   ├── CHANGELOG-COPILOT.md       ✅ Empty template
-│   ├── .copilot.local.md.example  ✅ Template
+│   ├── copilot.local.md.example  ✅ Template
 │   └── PROJECT-README.md          ✅ NEW - Project template
 │
 ├── Documentation (not installed, on GitHub)
@@ -176,7 +176,7 @@ Copilot-Drupal-Instructions/
     ├── CHANGELOG.md               ✅ Version history
     ├── composer.json              ✅ Package config
     ├── .gitattributes             ✅ Export-ignore configured
-    ├── .gitignore                 ✅ .copilot.local.md ignored
+    ├── .gitignore                 ✅ copilot.local.md ignored
     └── LICENSE                    ✅ MIT License
 ```
 
@@ -189,7 +189,7 @@ Copilot-Drupal-Instructions/
 - ✅ Personal instructions feature documented
 - ✅ PROJECT-README.md template created
 - ✅ .gitattributes excludes docs/ from install
-- ✅ .gitignore excludes .copilot.local.md
+- ✅ .gitignore excludes copilot.local.md
 - ✅ Installation guide updated with new template
 - ✅ Overview has clear context table
 
@@ -207,7 +207,7 @@ The package is now:
 
 This package provides:
 1. **Standardized Copilot instructions** for Drupal projects
-2. **Personal developer flexibility** via .copilot.local.md
+2. **Personal developer flexibility** via copilot.local.md
 3. **Auto-customization** via Copilot prompts
 4. **Clean installation** via Composer to .github/copilot/
 5. **Protected project files** via git merge strategy

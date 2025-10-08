@@ -105,7 +105,7 @@ public static function jsonEncodePretty(array $data) // JSON formatting utility
 1. Creates `.github/copilot/` directory
 2. Copies instruction files (if they don't exist)
 3. Copies `PROJECT-README.md` → `.github/copilot/README.md`
-4. Copies `.copilot.local.md.example`
+4. Copies `copilot.local.md.example`
 5. Creates `CHANGELOG-COPILOT.md` at project root from template
 6. **Never** overwrites existing files (protects customizations)
 7. Provides clear console output with emoji and formatting
@@ -271,7 +271,7 @@ If we need more sophisticated automation:
 
 2. **Automatic .gitignore Management**
    - Could ensure `CHANGELOG-COPILOT.md` is tracked
-   - Could ensure `.copilot.local.md` is ignored
+   - Could ensure `copilot.local.md` is ignored
 
 3. **Change Detection**
    - Already have `jsonEncodePretty()` ready
