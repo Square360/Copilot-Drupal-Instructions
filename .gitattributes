@@ -1,11 +1,14 @@
-# Exclude files from composer package (via export-ignore)
-# These files won't be installed when the package is required
+# Exclude documentation and repository files from composer distribution
 /docs export-ignore
+/copilot-configuration/README.md export-ignore
+/copilot-configuration/DEVELOPMENT.md export-ignore
 /.gitattributes export-ignore
 /.gitignore export-ignore
 /CHANGELOG.md export-ignore
-/CHANGELOG-COPILOT.md export-ignore
+/COPILOT-PROMPT.md export-ignore
+/LICENSE export-ignore
+/README.md export-ignore
 
-# Exclude project-specific template so it's not overwritten on composer update
-# This template is included in README.md and copied during post-install
-/PROJECT-README.md export-ignore
+# Note: Instruction files and scripts are included in the distribution.
+# The ComposerScripts class (in copilot-configuration/scripts/) automatically
+# copies files to the correct locations while protecting customizations.
