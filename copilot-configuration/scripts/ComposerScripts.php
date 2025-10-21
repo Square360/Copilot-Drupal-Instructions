@@ -89,7 +89,7 @@ class ComposerScripts {
       }
     } else {
       $io->write("<info>📁 .github/copilot directory already exists</info>");
-    }    // Files to copy to .github/copilot/ (only if they don't exist)
+    }    // Files to copy to .github/copilot/ (always update to latest package version)
     $instructionFiles = [
       'overview.md',
       'instructions.md',
@@ -100,22 +100,27 @@ class ComposerScripts {
       'session-checklist.md',
     ];
 
-    // Copy instruction files (only if they don't exist)
-    $io->write("<info>📄 Copying instruction files...</info>");
+    // Copy instruction files (always overwrite with package version for updates)
+    $io->write("<info>📄 Installing/updating instruction files...</info>");
     $copiedCount = 0;
     $skippedCount = 0;
+    $updatedCount = 0;
 
     foreach ($instructionFiles as $file) {
       $source = $packageDir . '/' . $file;
       $dest = $copilotDir . '/' . $file;
 
-      if (!file_exists($dest) && file_exists($source)) {
+      if (file_exists($source)) {
+        $isUpdate = file_exists($dest);
         copy($source, $dest);
-        $io->write("   <info>✅ Copied $file to .github/copilot/</info>");
-        $copiedCount++;
-      } elseif (file_exists($dest)) {
-        $io->write("   <comment>⏭️  Skipped $file (already exists - preserving your version)</comment>");
-        $skippedCount++;
+
+        if ($isUpdate) {
+          $io->write("   <info>🔄 Updated $file with latest package version</info>");
+          $updatedCount++;
+        } else {
+          $io->write("   <info>✅ Installed $file to .github/copilot/</info>");
+          $copiedCount++;
+        }
       } else {
         $io->writeError("   <error>⚠️  Warning: $file not found in package directory</error>");
       }
@@ -186,10 +191,13 @@ class ComposerScripts {
     $io->write(str_repeat("=", 70) . "\n");
 
     if ($copiedCount > 0) {
-      $io->write("<info>📦 Copied $copiedCount file(s)</info>");
+      $io->write("<info>📦 Installed $copiedCount new file(s)</info>");
+    }
+    if ($updatedCount > 0) {
+      $io->write("<info>🔄 Updated $updatedCount file(s) with latest package version</info>");
     }
     if ($skippedCount > 0) {
-      $io->write("<comment>⏭️  Skipped $skippedCount existing file(s)</comment>");
+      $io->write("<comment>🔒 Protected $skippedCount file(s) from overwriting</comment>");
     }
 
     $io->write("\n<info>📝 Next steps:</info>");

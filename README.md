@@ -24,10 +24,11 @@ composer require square360/copilot-drupal-instructions
 - Package installs to `vendor/square360/copilot-drupal-instructions/`
 - Composer loads the plugin automatically
 - Plugin subscribes to post-install and post-update events
-- Instruction files are automatically copied to `.github/copilot/`
+- Instruction files are automatically copied/updated to `.github/copilot/`
+- Project-specific README.md is created in `.github/copilot/` (from PROJECT-README.md template)
 - `CHANGELOG-COPILOT.md` is created at project root (if it doesn't exist)
-- Existing files are never overwritten (your customizations are protected)
-- Updates only copy new or missing files
+- Protected files are never overwritten: `.github/copilot/README.md`, `copilot.local.md`, `CHANGELOG-COPILOT.md`
+- Instruction files are always updated to latest package versions for current standards
 
 **Architecture:** This package uses a Composer plugin approach to ensure scripts run automatically when the package is installed. Inspired by [Pantheon's upstream-configuration pattern](https://github.com/pantheon-upstreams/drupal-composer-managed), but implemented as a plugin for reliable automation. See `copilot-configuration/README.md` for technical details.
 
