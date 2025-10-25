@@ -181,6 +181,22 @@ class ComposerScripts {
       $skippedCount++;
     }
 
+    // Create .github/copilot-instructions.md entry point
+    $io->write("\n<info>🔗 Setting up Copilot entry point...</info>");
+    $entryPointSource = $packageDir . '/COPILOT-INSTRUCTIONS-TEMPLATE.md';
+    $entryPointDest = $projectRoot . '/.github/copilot-instructions.md';
+
+    if (!file_exists($entryPointDest) && file_exists($entryPointSource)) {
+      copy($entryPointSource, $entryPointDest);
+      $io->write("   <info>✅ Created .github/copilot-instructions.md entry point</info>");
+      $copiedCount++;
+    } elseif (file_exists($entryPointDest)) {
+      $io->write("   <comment>🔒 Skipped copilot-instructions.md (already exists - preserving your version)</comment>");
+      $skippedCount++;
+    } else {
+      $io->writeError("   <error>⚠️  Warning: COPILOT-INSTRUCTIONS-TEMPLATE.md not found in package directory</error>");
+    }
+
     // Ensure .gitignore includes copilot.local.md
     $io->write("\n<info>🔍 Checking .gitignore...</info>");
     static::ensureGitignoreEntry($projectRoot, $io);
@@ -201,10 +217,11 @@ class ComposerScripts {
     }
 
     $io->write("\n<info>📝 Next steps:</info>");
-    $io->write("   1. Review files in .github/copilot/");
-    $io->write("   2. Customize CHANGELOG-COPILOT.md at project root with your project name");
-    $io->write("   3. Run the auto-customization prompt from README.md to customize for your project");
-    $io->write("   4. Optional: Copy .github/copilot/copilot.local.md.example to");
+    $io->write("   1. Start with .github/copilot-instructions.md - the main entry point for Copilot");
+    $io->write("   2. Review detailed files in .github/copilot/");
+    $io->write("   3. Customize CHANGELOG-COPILOT.md at project root with your project name");
+    $io->write("   4. Run the auto-customization prompt from README.md to customize for your project");
+    $io->write("   5. Optional: Copy .github/copilot/copilot.local.md.example to");
     $io->write("      .github/copilot/copilot.local.md for personal instructions");
     $io->write("      (Both .github/copilot/ and project root locations are now git-ignored)\n");
     $io->write("<info>🔗 Documentation: vendor/square360/copilot-drupal-instructions/README.md</info>\n");

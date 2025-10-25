@@ -24,6 +24,7 @@ composer require square360/copilot-drupal-instructions
 - Package installs to `vendor/square360/copilot-drupal-instructions/`
 - Composer loads the plugin automatically
 - Plugin subscribes to post-install and post-update events
+- **Creates `.github/copilot-instructions.md` entry point** for Copilot discovery
 - Instruction files are automatically copied/updated to `.github/copilot/`
 - Project-specific README.md is created in `.github/copilot/` (from PROJECT-README.md template)
 - `CHANGELOG-COPILOT.md` is created at project root (if it doesn't exist)

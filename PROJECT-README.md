@@ -2,6 +2,8 @@
 
 This directory contains GitHub Copilot instruction files for this Drupal project.
 
+> **💡 Entry Point**: The main entry point for Copilot is at `../.github/copilot-instructions.md` which provides an overview and links to all files in this directory.
+
 ## Quick Start
 
 These instruction files provide context-aware assistance for:

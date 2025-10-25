@@ -43,6 +43,7 @@ composer require square360/copilot-drupal-instructions
 ```
 
 The package will automatically:
+- **Create `.github/copilot-instructions.md` entry point** for easy Copilot discovery
 - Install/update instruction files to `.github/copilot/` (always uses latest package versions)
 - Create project-specific `README.md` in `.github/copilot/` (protected from updates)
 - Create `CHANGELOG-COPILOT.md` at your project root (protected from updates)
