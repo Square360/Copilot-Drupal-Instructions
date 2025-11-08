@@ -98,6 +98,7 @@ class ComposerScripts {
       'accessibility.md',
       'security-performance.md',
       'session-checklist.md',
+      'clickup-documentation.md',
     ];
 
     // Copy instruction files (always overwrite with package version for updates)

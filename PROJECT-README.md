@@ -68,17 +68,26 @@ Please help me customize these GitHub Copilot instructions for my Drupal project
    - Development patterns and architecture
    - Dependencies and integration points
 
-2. **Customize Instructions**: Update the instruction files with:
-   - Replace "[Project Name]" placeholders with actual project name
-   - Add specific custom modules and themes to examples
-   - Include project-specific coding patterns
-   - Update file paths and URLs to match the project structure
+2. **Customize PROTECTED Files Only**: Update only the files that won't be overwritten by package updates:
+   - **`.github/copilot/README.md`** - Update project-specific documentation and file descriptions
+   - **`copilot.local.md`** (if it exists) - Add project-specific patterns and preferences
+   - **Project documentation** - Update README.md and other project files with Copilot context
+
+   **⚠️ DO NOT modify these files** (they get overwritten by package updates):
+   - `instructions.md`, `overview.md`, `drupal-modules.md`, `themes-frontend.md`
+   - `accessibility.md`, `security-performance.md`, `session-checklist.md`
 
 3. **Create Project Changelog**: Set up `CHANGELOG-COPILOT.md` at the project root with:
    - Proper project name and description
    - Template ready for tracking development activities
+   - Project-specific development notes and patterns
 
-Please analyze the codebase and customize all relevant instruction files to provide the most helpful context for this specific project.
+4. **Update Entry Point**: Customize `.github/copilot-instructions.md` with:
+   - Replace "[Project Name]" placeholders with actual project name
+   - Add project-specific technology stack information
+   - Include links to custom modules and themes
+
+Please analyze the codebase and customize only the protected files to provide project-specific context while preserving the package-managed instruction files.
 \`\`\`
 
 ## Package Updates
