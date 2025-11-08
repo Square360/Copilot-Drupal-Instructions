@@ -17,7 +17,7 @@ The package installs as a Composer plugin and automatically sets up instruction 
 
 **Install the package:**
 ```bash
-composer require square360/copilot-drupal-instructions
+composer require --dev square360/copilot-drupal-instructions
 ```
 
 **What happens during installation:**
