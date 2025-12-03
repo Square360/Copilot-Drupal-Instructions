@@ -116,7 +116,7 @@ This file contains best practices and interaction patterns for working with GitH
 1. **Check Context7 MCP Connection**: Ensure Context7 MCP is available before writing Drupal code
 2. **Use Context7 First**: Before implementing Drupal APIs, use Context7 MCP to get current documentation
 3. **For Events**: Check <https://api.drupal.org/api/drupal/core%21core.api.php/group/events/> for real event names
-4. **For Services**: Use `lando drush eval "print_r(array_keys(\Drupal::getContainer()->getServiceIds()));"` to list actual services
+4. **For Services**: Use `lando drush eval "print_r(\Drupal::getContainer()->getServiceIds());"` to list actual services
 5. **For Methods**: Search official API docs for class/interface documentation
 6. **For Hooks**: Verify hook exists in core.api.php or module documentation
 
