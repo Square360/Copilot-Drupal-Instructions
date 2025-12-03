@@ -123,6 +123,7 @@ find web/core -name "*Event.php" -type f
 
 ---
 
+## Dependency Injection
 ### Core Principles
 - **Never use static calls** in classes (e.g., `\Drupal::`, `User::load()`, `Node::load()`)
 - **Always inject services** via constructor and `create()` method
