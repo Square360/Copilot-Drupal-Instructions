@@ -37,7 +37,91 @@ function modulename_example_function($parameter_name, array $another_param) {
 }
 ```
 
-## Dependency Injection
+## Event Listeners and Subscribers
+
+> **⚠️ Critical**: GitHub Copilot frequently hallucinates Drupal events that don't exist. Always verify against official documentation.
+
+### 🔍 Official Event Documentation
+
+- **Check Context7 MCP Connection**: Before writing Drupal code, verify Context7 MCP tools are available
+- **Use Context7 MCP**: Query Context7 for up-to-date Drupal documentation before implementing
+- **Drupal 10 Events**: <https://api.drupal.org/api/drupal/core%21core.api.php/group/events/10>
+- **Drupal 11 Events**: <https://api.drupal.org/api/drupal/core%21core.api.php/group/events/11>
+- **Real Event Classes**: Located in `core/lib/Drupal/Core/` and `core/modules/*/src/Event/`
+
+### ✅ Actual Drupal Events (Not Hallucinations)
+```php
+// Real events you can subscribe to:
+use Drupal\Core\Config\ConfigCrudEvent;           // ConfigEvents::SAVE, DELETE, etc.
+use Drupal\Core\Entity\EntityEvent;                // For entity operations
+use Drupal\Core\Routing\RoutingEvents;             // DYNAMIC, ALTER, etc.
+use Symfony\Component\HttpKernel\KernelEvents;     // REQUEST, RESPONSE, etc.
+use Drupal\Core\Asset\AttachedAssetsInterface;     // AssetEvents::CSS, JS
+```
+
+### ❌ Common AI Hallucinations to Avoid
+```php
+// These DO NOT EXIST - AI inventions:
+// EntityUpdateEvent, EntitySaveEvent, NodeSaveEvent
+// UserLoginEvent, ContentTypeEvent, FieldUpdateEvent
+// ModuleInstallEvent, ThemeEvent, etc.
+```
+
+### ✅ Correct Event Subscriber Pattern
+```php
+use Drupal\Core\Config\ConfigCrudEvent;
+use Drupal\Core\Config\ConfigEvents;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
+/**
+ * Subscribes to configuration events.
+ */
+class MyModuleConfigSubscriber implements EventSubscriberInterface {
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function getSubscribedEvents() {
+    // Use REAL event constants from official documentation
+    return [
+      ConfigEvents::SAVE => ['onConfigSave'],
+      ConfigEvents::DELETE => ['onConfigDelete'],
+    ];
+  }
+
+  /**
+   * Responds to config save events.
+   */
+  public function onConfigSave(ConfigCrudEvent $event) {
+    $config = $event->getConfig();
+    // Implementation here
+  }
+
+}
+```
+
+### 🔎 Verification Commands
+```bash
+# List all available events
+lando drush eval "print_r(get_defined_constants(true)['user']);" | grep -i event
+
+# Check if a service exists
+lando drush eval "var_dump(\Drupal::hasService('your.service.name'));"
+
+# Search for real event classes
+find web/core -name "*Event.php" -type f
+```
+
+### Development Workflow
+
+1. **Check Context7 MCP connection** - Verify Context7 tools are available, provide setup if not
+2. **Use Context7 MCP first** - Query for current Drupal API documentation
+3. **Never trust AI event names** - always verify against official docs
+4. **Copy exact class names** from api.drupal.org
+5. **Test event firing** with debugging/logging
+6. **Use proper namespaces** as shown in documentation
+
+---
 
 ### Core Principles
 - **Never use static calls** in classes (e.g., `\Drupal::`, `User::load()`, `Node::load()`)

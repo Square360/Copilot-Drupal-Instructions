@@ -8,6 +8,7 @@ This package provides standardized GitHub Copilot instruction files for **Drupal
 - Drupal 10/11
 - PHP 8.2+
 - Pantheon hosting exclusively
+- Lando for local development
 
 **For Package Developers:** See `copilot-configuration/DEVELOPMENT.md` for architecture details, development workflow, and contribution guidelines.
 
