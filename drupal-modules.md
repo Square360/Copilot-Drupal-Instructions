@@ -112,7 +112,7 @@ lando drush eval "var_dump(\Drupal::hasService('your.service.name'));"
 find web/core -name "*Event.php" -type f
 ```
 
-### Development Workflow
+### 🔄 Development Workflow
 
 1. **Check Context7 MCP connection** - Verify Context7 tools are available, provide setup if not
 2. **Use Context7 MCP first** - Query for current Drupal API documentation
