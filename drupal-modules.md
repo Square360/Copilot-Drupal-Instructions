@@ -101,15 +101,32 @@ class MyModuleConfigSubscriber implements EventSubscriberInterface {
 ```
 
 ### 🔎 Verification Commands
-```bash
-# List all available events
-lando drush eval "print_r(get_defined_constants(true)['user']);" | grep -i event
 
-# Check if a service exists
+```bash
+# Find all actual event classes in Drupal core
+find web/core -name "*Event*.php" -type f | head -20
+
+# Find event constants (e.g., ConfigEvents, KernelEvents)
+find web/core -name "*Events.php" -type f | xargs grep -l "const "
+
+# Search for specific event class definitions
+grep -r "class.*Event" web/core/lib/Drupal/Core/ --include="*.php" | head -10
+
+# List event subscriber services (shows what events are actually used)
+lando drush eval "
+  \$container = \Drupal::getContainer();
+  \$tagged = \$container->findTaggedServiceIds('event_subscriber');
+  print_r(array_keys(\$tagged));
+"
+
+# Check if a specific service exists
 lando drush eval "var_dump(\Drupal::hasService('your.service.name'));"
 
-# Search for real event classes
-find web/core -name "*Event.php" -type f
+# Inspect specific event constants from a class
+lando drush eval "
+  \$reflection = new ReflectionClass('Drupal\Core\Config\ConfigEvents');
+  print_r(\$reflection->getConstants());
+"
 ```
 
 ### 🔄 Development Workflow
