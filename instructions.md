@@ -38,7 +38,9 @@ This file contains best practices and interaction patterns for working with GitH
 ## Project-Specific Guidelines
 
 ### Code Quality Standards
-- Always run `lando composer code-sniff` before finalizing changes
+
+- **Do not run `lando composer code-sniff` unless requested** by the developer
+- **"Prepare for push"** = Run `lando composer code-sniff`, fix issues, then run again to verify
 - Follow Drupal coding standards and dependency injection patterns
 - Maintain comprehensive documentation for all methods
 - Use semantic commit messages
@@ -54,6 +56,77 @@ This file contains best practices and interaction patterns for working with GitH
 - Update session checklist after each development session
 - Maintain comprehensive changelog with technical details
 - Use consistent formatting and structure across documentation
+
+### 🤖 Preventing AI Hallucinations
+
+**Critical**: GitHub Copilot may "hallucinate" (invent) Drupal APIs, events, or services that don't exist.
+
+#### 🔌 Context7 MCP Connection Check
+
+**Before writing or testing Drupal code**, verify Context7 MCP connection:
+
+1. **Test Connection**: Check if Context7 MCP tools are available
+   - If Context7 tools (e.g., `mcp_context7_*`) are not available, the MCP server is not connected
+   - Display setup instructions to the user
+
+2. **Setup Instructions for Developers**:
+
+   If Context7 MCP is not connected, provide these instructions:
+
+   ```text
+   🔧 Context7 MCP Setup Required for Drupal Development
+
+   To get accurate Drupal API documentation, connect Context7 MCP:
+
+   1. Open VS Code Settings (Cmd/Ctrl + ,)
+   2. Search for "MCP Servers" or navigate to:
+      Extensions > GitHub Copilot > MCP Servers
+
+   3. Add Context7 MCP server:
+      - Click "Add MCP Server"
+      - Server Name: context7
+      - Command: npx
+      - Arguments: -y @context7/mcp
+
+   4. Restart VS Code or reload window (Cmd/Ctrl + Shift + P → "Reload Window")
+
+   5. Verify by asking Copilot to "Get Drupal documentation using Context7"
+
+   📚 More info: https://github.com/context7/mcp
+   ```
+
+#### 🔍 Always Verify Against Official Sources
+
+- **Use Context7 MCP for Drupal**: When writing or testing Drupal code, use Context7 to fetch current API documentation
+- **Drupal 10 API**: <https://api.drupal.org/api/drupal/10>
+- **Drupal 11 API**: <https://api.drupal.org/api/drupal/11>
+- **Events Reference**: <https://api.drupal.org/api/drupal/core%21core.api.php/group/events/>
+- **Services List**: Use `drush eval "print_r(\Drupal::getContainer()->getServiceIds());"` for actual services
+- **Hook Reference**: <https://api.drupal.org/api/drupal/core%21core.api.php/group/hooks/>
+
+#### ⚠️ Common Hallucinations to Watch For
+
+- **Fake Events**: `EntityUpdateEvent`, `NodeSaveEvent` (real: `EntityEvent`, hook_entity_update())
+- **Non-existent Services**: Always check service exists before injecting
+- **Deprecated APIs**: Verify methods exist in your Drupal version
+- **Made-up Hook Names**: Cross-reference with official hook documentation
+
+#### ✅ Verification Workflow
+
+1. **Check Context7 MCP Connection**: Ensure Context7 MCP is available before writing Drupal code
+2. **Use Context7 First**: Before implementing Drupal APIs, use Context7 MCP to get current documentation
+3. **For Events**: Find real events with `find web/core -name "*Events.php" -type f | xargs grep -l "const "`
+4. **For Services**: Use `lando drush eval "print_r(array_keys(\Drupal::getContainer()->getParameterBag()->all()));"` to list container services
+5. **For Methods**: Search official API docs for class/interface documentation
+6. **For Hooks**: Verify hook exists in core.api.php or module documentation
+
+#### 📝 Best Practices
+
+- **Use Context7 MCP for Drupal documentation** before implementing any Drupal APIs
+- **Copy exact API signatures** from official documentation
+- **Test immediately** after implementing AI suggestions
+- **Use IDE autocomplete** to verify method/class existence
+- **Check deprecation warnings** in your Drupal version
 
 ## Collaboration Best Practices
 
@@ -72,9 +145,11 @@ This file contains best practices and interaction patterns for working with GitH
 ## Common shortcuts and commands
 
 ### Shortcuts
- - When I say "Add to changelog", add a detailed entry to the project root file `CHANGELOG-COPILOT.md` (located at `./CHANGELOG-COPILOT.md`) summarizing the work done in this session.
- - When I say "Run code sniff", execute `lando composer code-sniff` and report any issues found.
- - When I say "terminal done", it means "the terminal command has completed successfully, please continue".
+
+- When I say "Add to changelog", add a detailed entry to the project root file `CHANGELOG-COPILOT.md` (located at `./CHANGELOG-COPILOT.md`) summarizing the work done in this session.
+- When I say "Run code sniff", execute `lando composer code-sniff` and report any issues found.
+- When I say "Prepare for push", run `lando composer code-sniff`, attempt to correct any errors, then run it again to verify no new issues have arisen.
+- When I say "terminal done", it means "the terminal command has completed successfully, please continue".
 
 ## Common Development Patterns
 
